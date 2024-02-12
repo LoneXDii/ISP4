@@ -1,0 +1,1 @@
+D:\labs\Sem 4\ISP\Lab1\Lab1\Lab1.csproj;x64
