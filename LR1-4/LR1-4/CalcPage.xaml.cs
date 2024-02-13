@@ -104,6 +104,7 @@ public partial class CalcPage : ContentPage
 
     private void OnBinaryExpressionButtonClicked(object sender, EventArgs e)
     {
+        expression.Operand2 = "";
         Button button = (Button)sender;
         expression.Operand1 = insertion.ToString();
         insertion.Clear();
@@ -142,7 +143,14 @@ public partial class CalcPage : ContentPage
 
     private void OnEqualsButtonClicked(object sender, EventArgs e)
     {
-        expression.Operand2 = insertion.ToString();
+        if (expression.Operand2 == "")
+        {
+            expression.Operand2 = insertion.ToString();
+        }
+        else
+        {
+            expression.Operand1 = insertion.ToString();
+        }
         double answ = 0;
         try{
             answ = expression.Evaluate();
@@ -151,12 +159,10 @@ public partial class CalcPage : ContentPage
             return;
         }
 
-        expression.Operand1 = expression.Operand2;
-        expression.Operand2 = Convert.ToString(answ);
         insertion.Clear();
-        insertion.Append(expression.Operand2);
+        insertion.Append(Convert.ToString(answ));
 
-        if (answ - Math.Floor(answ) == 0) isFractional = false;
+        if (answ - Math.Floor(answ) == 0) isFractional = false; //Тут баг //или не (хз, вроде нет)
         else isFractional = true;
 
         if (answ >= 0) isNegative = false;
