@@ -4,8 +4,8 @@
              x:Class="LR1_4.CalcPage"
              Title="CalcPage">
     <Grid
-    ColumnDefinitions="*,*,*,*,*"
-    RowDefinitions="*,*,*,*,*,*,*,*"
+    ColumnDefinitions="*,*,*,*"
+    RowDefinitions="*,*,*,*,*,*,*,*,*,*"
     x:Name="CalcGrid"
     ColumnSpacing="1"
     RowSpacing="1">
@@ -13,202 +13,212 @@
         <Button
         x:Name="Button9"
         Grid.Column="2"
-        Grid.Row="4"
+        Grid.Row="6"
         Text="9" />
 
         <Button
         x:Name="Button8"
         Grid.Column="1"
-        Grid.Row="4"
+        Grid.Row="6"
         Text="8" />
 
         <Button
         x:Name="Button7"
         Grid.Column="0"
-        Grid.Row="4"
+        Grid.Row="6"
         Text="7" />
 
         <Button
         x:Name="Button6"
         Grid.Column="2"
-        Grid.Row="5"
+        Grid.Row="7"
         Text="6" />
 
         <Button
         x:Name="Button5"
         Grid.Column="1"
-        Grid.Row="5"
+        Grid.Row="7"
         Text="5" />
 
         <Button
         x:Name="Button4"
         Grid.Column="0"
-        Grid.Row="5"
+        Grid.Row="7"
         Text="4" />
 
         <Button
         x:Name="Button3"
         Grid.Column="2"
-        Grid.Row="6"
+        Grid.Row="8"
         Text="3" />
 
         <Button
         x:Name="Button2"
         Grid.Column="1"
-        Grid.Row="6"
+        Grid.Row="8"
         Text="2" />
 
         <Button
         x:Name="Button1"
         Grid.Column="0"
-        Grid.Row="6"
+        Grid.Row="8"
         Text="1" />
 
         <Button
         x:Name="ButtonDouble"
         Grid.Column="2"
-        Grid.Row="7"
+        Grid.Row="9"
         Text="," />
 
         <Button
         x:Name="Button0"
         Grid.Column="1"
-        Grid.Row="7"
+        Grid.Row="9"
         Text="0" />
 
         <Button
         x:Name="ButtonSign"
         Grid.Column="0"
-        Grid.Row="7"
+        Grid.Row="9"
         Text="+/-" />
 
         <Button
         x:Name="ButtonPlus"
         Grid.Column="3"
-        Grid.Row="4"
+        Grid.Row="8"
         Text="+" />
 
         <Button
         x:Name="ButtonSub"
-        Grid.Column="4"
-        Grid.Row="4"
+        Grid.Column="3"
+        Grid.Row="7"
         Text="-" />
 
         <Button
         x:Name="ButtonMul"
         Grid.Column="3"
-        Grid.Row="5"
+        Grid.Row="6"
         Text="*" />
 
         <Button
         x:Name="ButtonDiv"
-        Grid.Column="4"
+        Grid.Column="3"
         Grid.Row="5"
-        Text="/" />
+        Text="÷" />
 
         <Button
         x:Name="ButtonClearAll"
-        Grid.Column="3"
-        Grid.Row="6"
+        Grid.Column="1"
+        Grid.Row="4"
         Text="CE" />
 
         <Button
         x:Name="ButtonClear"
-        Grid.Column="4"
-        Grid.Row="6"
+        Grid.Column="2"
+        Grid.Row="4"
         Text="C" />
 
         <Button
         x:Name="ButtonDel"
         Grid.Column="3"
-        Grid.Row="7"
-        Text="&lt;-" />
+        Grid.Row="4"
+        Text="DEL" />
 
         <Button
         x:Name="ButtonEquals"
-        Grid.Column="4"
-        Grid.Row="7"
+        Grid.Column="3"
+        Grid.Row="9"
         Text="=" />
 
         <Button
         x:Name="Button1DivX"
         Grid.Column="0"
-        Grid.Row="3"
+        Grid.Row="5"
         Text="1/x" />
 
         <Button
         x:Name="ButtontPercent"
-        Grid.Column="1"
-        Grid.Row="3"
+        Grid.Column="0"
+        Grid.Row="4"
         Text="%" />
 
         <Button
         x:Name="ButtonPow2"
-        Grid.Column="2"
-        Grid.Row="3"
-        Text="x^2" />
+        Grid.Column="1"
+        Grid.Row="5"
+        Text="x²" />
 
         <Button
         x:Name="ButtonSqrtX"
-        Grid.Column="3"
-        Grid.Row="3"
-        Text="sqrt(x)" />
+        Grid.Column="2"
+        Grid.Row="5"
+        Text="√x" />
 
         <Button
         x:Name="ButtonMod"
-        Grid.Column="4"
+        Grid.Column="0"
         Grid.Row="3"
-        Text="(mod)" />
+        Grid.ColumnSpan="4"    
+        Text="mod" />
 
-        <Button
-        x:Name="ButtonMemClean"
-        Grid.Column="0"
-        Grid.Row="2"
-        Text="MC" />
+        <Grid
+            Grid.Column="0"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
+            ColumnDefinitions="*,*,*,*,*"
+            RowDefinitions="*"
+            ColumnSpacing="1">
 
-        <Button
-        x:Name="ButtonMemCall"
-        Grid.Column="1"
-        Grid.Row="2"
-        Text="MR" />
+            <Button
+            x:Name="ButtonMemClean"
+            Grid.Column="0"
+            Grid.Row="0"
+            Text="MC" />
 
-        <Button
-        x:Name="ButtonMemAdd"
-        Grid.Column="2"
-        Grid.Row="2"
-        Text="M+" />
+            <Button
+            x:Name="ButtonMemCall"
+            Grid.Column="1"
+            Grid.Row="0"
+            Text="MR" />
 
-        <Button
-        x:Name="ButtonMemRemove"
-        Grid.Column="3"
-        Grid.Row="2"
-        Text="M-" />
+            <Button
+            x:Name="ButtonMemAdd"
+            Grid.Column="2"
+            Grid.Row="0"
+            Text="M+" />
 
-        <Button
-        x:Name="ButtonMemSave"
-        Grid.Column="4"
-        Grid.Row="2"
-        Text="MS" />
+            <Button
+            x:Name="ButtonMemRemove"
+            Grid.Column="3"
+            Grid.Row="0"
+            Text="M-" />
 
-        <Button
-        x:Name="ButtonMemShow"
-        Grid.Column="0"
-        Grid.Row="1"
-        Text="M" />
+            <Button
+            x:Name="ButtonMemSave"
+            Grid.Column="4"
+            Grid.Row="0"
+            Text="MS" />
+        </Grid>
 
         <Label
         x:Name="LabelEnter"
-        Grid.Column="1"
+        Grid.Column="0"
         Grid.Row="1"
         Grid.ColumnSpan="4"
-        Text="Test1"/>
+        Text="Test1"
+        FontSize="50"
+        HorizontalTextAlignment="End"
+        VerticalTextAlignment="Center"/>
 
         <Label
         x:Name="LabelBuffer"
         Grid.Column="0"
         Grid.Row="0"
-        Grid.ColumnSpan="5"
-        Text="Test2"/>
+        Grid.ColumnSpan="4"
+        Text="Test2"
+        FontSize="30"
+        HorizontalTextAlignment="End"
+        VerticalTextAlignment="Center"/>
 
     </Grid>
 </ContentPage>
