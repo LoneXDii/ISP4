@@ -98,34 +98,38 @@
         x:Name="AddButton"
         Grid.Column="3"
         Grid.Row="8"
-        Text="+" />
+        Text="+"
+        Clicked="OnBinaryExpressionButtonClicked"/>
 
         <Button
         x:Name="SubButton"
         Grid.Column="3"
         Grid.Row="7"
-        Text="-" />
+        Text="-"
+        Clicked="OnBinaryExpressionButtonClicked"/>
 
         <Button
         x:Name="MulButton"
         Grid.Column="3"
         Grid.Row="6"
-        Text="*" />
+        Text="*"
+        Clicked="OnBinaryExpressionButtonClicked"/>
 
         <Button
         x:Name="DivButton"
         Grid.Column="3"
         Grid.Row="5"
-        Text="÷" />
+        Text="÷"
+        Clicked="OnBinaryExpressionButtonClicked"/>
 
         <Button
-        x:Name="ClearAllButton"
+        x:Name="ClearButton"
         Grid.Column="1"
         Grid.Row="4"
         Text="CE" />
 
         <Button
-        x:Name="ClearButton"
+        x:Name="ClearAllButton"
         Grid.Column="2"
         Grid.Row="4"
         Text="C" />
@@ -141,7 +145,8 @@
         x:Name="EqualsButton"
         Grid.Column="3"
         Grid.Row="9"
-        Text="=" />
+        Text="=" 
+        Clicked="OnEqualsButtonClicked"/>
 
         <Button
         x:Name="DivXButton"
@@ -172,7 +177,8 @@
         Grid.Column="0"
         Grid.Row="3"
         Grid.ColumnSpan="4"    
-        Text="mod" />
+        Text="mod"
+        Clicked="OnBinaryExpressionButtonClicked"/>
 
         <Grid
             Grid.Column="0"
@@ -224,12 +230,12 @@
         VerticalTextAlignment="Center"/>
 
         <Label
-        x:Name="BufferLabel"
+        x:Name="ExpressionLabel"
         Grid.Column="0"
         Grid.Row="0"
         Grid.ColumnSpan="4"
-        Text="Test2"
-        FontSize="30"
+        Text=""
+        FontSize="25"
         HorizontalTextAlignment="End"
         VerticalTextAlignment="Center"/>
 
