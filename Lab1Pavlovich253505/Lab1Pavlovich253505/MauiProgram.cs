@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace LR1_4
+namespace Lab1Pavlovich253505
 {
     public static class MauiProgram
     {

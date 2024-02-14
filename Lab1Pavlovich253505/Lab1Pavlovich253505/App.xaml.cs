@@ -1,4 +1,4 @@
-﻿namespace LR1_4
+﻿namespace Lab1Pavlovich253505
 {
     public partial class App : Application
     {

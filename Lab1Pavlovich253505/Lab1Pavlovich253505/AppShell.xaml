@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="LR1_4.AppShell"
+    x:Class="Lab1Pavlovich253505.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:LR1_4"
+    xmlns:local="clr-namespace:Lab1Pavlovich253505"
     Shell.FlyoutBehavior="Flyout"
-    Title="LR1_4">
+    Title="Lab1Pavlovich253505">
 
     <FlyoutItem Title="Main">
         <ShellContent
-        Title="Main"
-        ContentTemplate="{DataTemplate local:MainPage}"
-    />
+    Title="Main"
+    ContentTemplate="{DataTemplate local:MainPage}"
+/>
     </FlyoutItem>
 
     <FlyoutItem Title="Calculator">
         <ShellContent
-        Title="Calculator"
-        ContentTemplate="{DataTemplate local:CalcPage}"
-    />
+    Title="Calculator"
+    ContentTemplate="{DataTemplate local:CalcPage}"
+/>
     </FlyoutItem>
 
 </Shell>

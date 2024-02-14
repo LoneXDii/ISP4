@@ -2,37 +2,37 @@
 using System.Linq.Expressions;
 using System.Text;
 
-namespace LR1_4;
+namespace Lab1Pavlovich253505;
 
 public partial class CalcPage : ContentPage
 {
-	private StringBuilder insertion = new StringBuilder("0");
-    //private BinaryExpression expression = new BinaryExpression();
-	private bool isFractional = false;
+    
+    private StringBuilder insertion = new StringBuilder("0");
+    private bool isFractional = false;
     private bool isNegative = false;
     private double operand1 = 0;
     private double operand2 = 0;
     private string currOperator = "";
     private Func<double, double, double>? operation = null;
 
-	public CalcPage()
-	{
-		InitializeComponent();
-	}
+    public CalcPage()
+    {
+        InitializeComponent();
+    }
 
-	private void OnNumButtonClicked(object sender, EventArgs e)
-	{
+    private void OnNumButtonClicked(object sender, EventArgs e)
+    {
         if (insertion.Length >= 11) return;
         if (insertion.ToString() == "0") insertion.Clear();
         Button button = (Button)sender;
-		switch (button.Text)
-		{
-			case "0":
-				insertion.Append("0");
-				break;
-			case "1":
-				insertion.Append("1");
-				break;
+        switch (button.Text)
+        {
+            case "0":
+                insertion.Append("0");
+                break;
+            case "1":
+                insertion.Append("1");
+                break;
             case "2":
                 insertion.Append("2");
                 break;
@@ -59,13 +59,13 @@ public partial class CalcPage : ContentPage
                 break;
         }
         EnterLabel.Text = insertion.ToString();
-	}
+    }
 
     private void OnDelButtonClicked(object sender, EventArgs e)
     {
         if (insertion.ToString() == "0") return;
         if (insertion.Length > 0)
-        {            
+        {
             if (insertion[insertion.Length - 1] == ',') isFractional = false;
             insertion.Length--;
             if (insertion.Length == 0) insertion.Append("0");
@@ -97,7 +97,6 @@ public partial class CalcPage : ContentPage
 
     private void OnFractionalButtonClicked(object sender, EventArgs e)
     {
-        //if (insertion.ToString() == "0") return;
         if (!isFractional)
         {
             insertion.Append(",");
@@ -150,14 +149,15 @@ public partial class CalcPage : ContentPage
         {
             operand2 = Convert.ToDouble(insertion.ToString());
         }
-        catch { 
+        catch
+        {
             return;
         }
 
         insertion.Clear();
 
         double answ;
-        if (operation is not null)  answ = operation(operand1, operand2);
+        if (operation is not null) answ = operation(operand1, operand2);
         else return;
 
         insertion.Append(Convert.ToString(answ));
