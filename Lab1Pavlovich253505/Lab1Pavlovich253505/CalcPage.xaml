@@ -161,7 +161,8 @@
         x:Name="PercentButton"
         Grid.Column="0"
         Grid.Row="4"
-        Text="%" />
+        Text="%" 
+        Clicked="OnUnaryExpressionButtonClicked"/>
 
         <Button
         x:Name="Pow2Button"

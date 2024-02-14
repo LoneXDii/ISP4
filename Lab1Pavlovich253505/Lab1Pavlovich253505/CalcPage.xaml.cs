@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -10,8 +11,8 @@ public partial class CalcPage : ContentPage
     private StringBuilder insertion = new StringBuilder("0");
     private bool isFractional = false;
     private bool isNegative = false;
-    private double operand1 = 0;
-    private double operand2 = 0;
+    private double? operand1 = null;
+    private double? operand2 = null;
     private string currOperator = "";
     private Func<double, double, double>? operation = null;
 
@@ -107,6 +108,7 @@ public partial class CalcPage : ContentPage
 
     private void OnBinaryExpressionButtonClicked(object sender, EventArgs e)
     {
+        operand2 = null;
         Button button = (Button)sender;
         operand1 = Convert.ToDouble(insertion.ToString());
         insertion.Clear();
@@ -147,7 +149,9 @@ public partial class CalcPage : ContentPage
     {
         try
         {
-            operand2 = Convert.ToDouble(insertion.ToString());
+            if(operand2 is null)
+                operand2 = Convert.ToDouble(insertion.ToString());
+            else operand1 = Convert.ToDouble(insertion.ToString());
         }
         catch
         {
@@ -157,16 +161,27 @@ public partial class CalcPage : ContentPage
         insertion.Clear();
 
         double answ;
-        if (operation is not null) answ = operation(operand1, operand2);
-        else return;
+        if (operation is not null &&
+            operand1 is not null &&
+            operand2 is not null)
+        {
+            answ = operation((double)operand1, (double)operand2);
+        }
+        else
+            return;
+            
 
         insertion.Append(Convert.ToString(answ));
 
-        if (answ - Math.Floor(answ) == 0) isFractional = false;
-        else isFractional = true;
+        if (answ - Math.Floor(answ) == 0)
+            isFractional = false;
+        else
+            isFractional = true;
 
-        if (answ >= 0) isNegative = false;
-        else isNegative = true;
+        if (answ >= 0)
+            isNegative = false;
+        else
+            isNegative = true;
 
         EnterLabel.Text = insertion.ToString();
 
@@ -196,6 +211,9 @@ public partial class CalcPage : ContentPage
             case ("1/x"):
                 value = 1 / value;
                 break;
+            case ("%"):
+                value = value / 100;
+                break;
         }
         insertion.Clear();
         insertion.Append(Convert.ToString(value));
@@ -218,8 +236,8 @@ public partial class CalcPage : ContentPage
         insertion.Append("0");
         isNegative = false;
         isFractional = false;
-        operand1 = 0;
-        operand2 = 0;
+        operand1 = null;
+        operand2 = null;
         currOperator = "";
         operation = null;
         EnterLabel.Text = "0";
