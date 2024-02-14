@@ -7,9 +7,13 @@ namespace LR1_4;
 public partial class CalcPage : ContentPage
 {
 	private StringBuilder insertion = new StringBuilder("0");
-    private BinaryExpression expression = new BinaryExpression();
+    //private BinaryExpression expression = new BinaryExpression();
 	private bool isFractional = false;
     private bool isNegative = false;
+    private double operand1 = 0;
+    private double operand2 = 0;
+    private string currOperator = "";
+    private Func<double, double, double>? operation = null;
 
 	public CalcPage()
 	{
@@ -93,7 +97,7 @@ public partial class CalcPage : ContentPage
 
     private void OnFractionalButtonClicked(object sender, EventArgs e)
     {
-        if (insertion.ToString() == "0") return;
+        //if (insertion.ToString() == "0") return;
         if (!isFractional)
         {
             insertion.Append(",");
@@ -104,9 +108,8 @@ public partial class CalcPage : ContentPage
 
     private void OnBinaryExpressionButtonClicked(object sender, EventArgs e)
     {
-        expression.Operand2 = "";
         Button button = (Button)sender;
-        expression.Operand1 = insertion.ToString();
+        operand1 = Convert.ToDouble(insertion.ToString());
         insertion.Clear();
         insertion.Append('0');
         isNegative = false;
@@ -114,55 +117,52 @@ public partial class CalcPage : ContentPage
         switch (button.Text)
         {
             case "+":
-                expression.OperatorString = "+";
-                expression.Operator = (double a, double b) => a + b;
+                currOperator = "+";
+                operation = (double a, double b) => a + b;
                 break;
             case "-":
-                expression.OperatorString = "-";
-                expression.Operator = (double a, double b) => a - b;
+                currOperator = "-";
+                operation = (double a, double b) => a - b;
                 break;
             case "*":
-                expression.OperatorString = "*";
-                expression.Operator = (double a, double b) => a * b;
+                currOperator = "*";
+                operation = (double a, double b) => a * b;
                 break;
             case "÷":
-                expression.OperatorString = "÷";
-                expression.Operator = (double a, double b) => a / b;
+                currOperator = "÷";
+                operation = (double a, double b) => a / b;
                 break;
             case "mod":
-                expression.OperatorString = "mod";
-                expression.Operator = (double a, double b) => a % b;
+                currOperator = "mod";
+                operation = (double a, double b) => a % b;
                 break;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(expression.Operand1);
+        stringBuilder.Append(operand1);
         stringBuilder.Append(" ");
-        stringBuilder.Append(expression.OperatorString);
+        stringBuilder.Append(currOperator);
         ExpressionLabel.Text = stringBuilder.ToString();
     }
 
     private void OnEqualsButtonClicked(object sender, EventArgs e)
     {
-        if (expression.Operand2 == "")
+        try
         {
-            expression.Operand2 = insertion.ToString();
+            operand2 = Convert.ToDouble(insertion.ToString());
         }
-        else
-        {
-            expression.Operand1 = insertion.ToString();
-        }
-        double answ = 0;
-        try{
-            answ = expression.Evaluate();
-        }
-        catch{
+        catch { 
             return;
         }
 
         insertion.Clear();
+
+        double answ;
+        if (operation is not null)  answ = operation(operand1, operand2);
+        else return;
+
         insertion.Append(Convert.ToString(answ));
 
-        if (answ - Math.Floor(answ) == 0) isFractional = false; //Тут баг //или не (хз, вроде нет)
+        if (answ - Math.Floor(answ) == 0) isFractional = false;
         else isFractional = true;
 
         if (answ >= 0) isNegative = false;
@@ -171,11 +171,11 @@ public partial class CalcPage : ContentPage
         EnterLabel.Text = insertion.ToString();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(expression.Operand1);
+        stringBuilder.Append(operand1.ToString()); ;
         stringBuilder.Append(" ");
-        stringBuilder.Append(expression.OperatorString);
+        stringBuilder.Append(currOperator);
         stringBuilder.Append(" ");
-        stringBuilder.Append(expression.Operand2);
+        stringBuilder.Append(operand2.ToString());
         stringBuilder.Append(" ");
         stringBuilder.Append("=");
         ExpressionLabel.Text = stringBuilder.ToString();
@@ -200,5 +200,29 @@ public partial class CalcPage : ContentPage
         insertion.Clear();
         insertion.Append(Convert.ToString(value));
         EnterLabel.Text = insertion.ToString();
+    }
+
+    private void OnClearButtonClicked(object sender, EventArgs e)
+    {
+        insertion.Clear();
+        insertion.Append("0");
+        isNegative = false;
+        isFractional = false;
+        if (ExpressionLabel.Text.Contains('=')) ExpressionLabel.Text = "";
+        EnterLabel.Text = insertion.ToString();
+    }
+
+    private void OnClearAllButtonClicked(object sender, EventArgs e)
+    {
+        insertion.Clear();
+        insertion.Append("0");
+        isNegative = false;
+        isFractional = false;
+        operand1 = 0;
+        operand2 = 0;
+        currOperator = "";
+        operation = null;
+        EnterLabel.Text = "0";
+        ExpressionLabel.Text = "";
     }
 }
