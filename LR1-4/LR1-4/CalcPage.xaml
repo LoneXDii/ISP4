@@ -152,7 +152,8 @@
         x:Name="DivXButton"
         Grid.Column="0"
         Grid.Row="5"
-        Text="1/x" />
+        Text="1/x"
+        Clicked="OnUnaryExpressionButtonClicked"/>
 
         <Button
         x:Name="PercentButton"
@@ -164,13 +165,15 @@
         x:Name="Pow2Button"
         Grid.Column="1"
         Grid.Row="5"
-        Text="x²" />
+        Text="x²"
+        Clicked="OnUnaryExpressionButtonClicked"/>
 
         <Button
         x:Name="SqrtXButton"
         Grid.Column="2"
         Grid.Row="5"
-        Text="√x" />
+        Text="√x"
+        Clicked="OnUnaryExpressionButtonClicked"/>
 
         <Button
         x:Name="ModButton"

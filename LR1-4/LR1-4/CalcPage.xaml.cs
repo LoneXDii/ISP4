@@ -180,4 +180,25 @@ public partial class CalcPage : ContentPage
         stringBuilder.Append("=");
         ExpressionLabel.Text = stringBuilder.ToString();
     }
+
+    private void OnUnaryExpressionButtonClicked(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        double value = Convert.ToDouble(EnterLabel.Text);
+        switch (button.Text)
+        {
+            case ("x²"):
+                value = value * value;
+                break;
+            case ("√x"):
+                value = Math.Sqrt(value);
+                break;
+            case ("1/x"):
+                value = 1 / value;
+                break;
+        }
+        insertion.Clear();
+        insertion.Append(Convert.ToString(value));
+        EnterLabel.Text = insertion.ToString();
+    }
 }
