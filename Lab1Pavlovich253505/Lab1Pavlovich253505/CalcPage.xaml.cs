@@ -27,40 +27,30 @@ public partial class CalcPage : ContentPage
     {
         if (insertion.Length >= 11) return;
         if (insertion.ToString() == "0") insertion.Clear();
+
         Button button = (Button)sender;
-        switch (button.Text)
-        {
-            case "0":
-                insertion.Append("0");
-                break;
-            case "1":
-                insertion.Append("1");
-                break;
-            case "2":
-                insertion.Append("2");
-                break;
-            case "3":
-                insertion.Append("3");
-                break;
-            case "4":
-                insertion.Append("4");
-                break;
-            case "5":
-                insertion.Append("5");
-                break;
-            case "6":
-                insertion.Append("6");
-                break;
-            case "7":
-                insertion.Append("7");
-                break;
-            case "8":
-                insertion.Append("8");
-                break;
-            case "9":
-                insertion.Append("9");
-                break;
-        }
+
+        if (button.Equals(Num0Button))
+            insertion.Append("0");
+        else if (button.Equals(Num1Button))
+            insertion.Append("1");
+        else if (button.Equals(Num2Button))
+            insertion.Append("2");
+        else if (button.Equals(Num3Button))
+            insertion.Append("3");
+        else if (button.Equals(Num4Button))
+            insertion.Append("4");
+        else if (button.Equals(Num5Button))
+            insertion.Append("5");
+        else if (button.Equals(Num6Button))
+            insertion.Append("6");
+        else if (button.Equals(Num7Button))
+            insertion.Append("7");
+        else if (button.Equals(Num8Button))
+            insertion.Append("8");
+        else if (button.Equals(Num9Button))
+            insertion.Append("9");
+
         EnterLabel.Text = insertion.ToString();
     }
 
@@ -138,30 +128,32 @@ public partial class CalcPage : ContentPage
 
         Button button = (Button)sender;
 
-        switch (button.Text)
+        if (button.Equals(AddButton))
         {
-            case "+":
-                currOperator = "+";
-                operation = (double a, double b) => a + b;
-                break;
-            case "-":
-                currOperator = "-";
-                operation = (double a, double b) => a - b;
-                break;
-            case "*":
-                currOperator = "*";
-                operation = (double a, double b) => a * b;
-                break;
-            case "÷":
-                currOperator = "÷";
-                operation = (double a, double b) => a / b;
-                break;
-            case "mod":
-                currOperator = "mod";
-                operation = (double a, double b) => a % b;
-                break;
+            currOperator = "+";
+            operation = (double a, double b) => a + b;
         }
-        
+        else if (button.Equals(SubButton))
+        {
+            currOperator = "-";
+            operation = (double a, double b) => a - b;
+        }
+        else if (button.Equals(MulButton))
+        {
+            currOperator = "*";
+            operation = (double a, double b) => a * b;
+        }
+        else if (button.Equals(DivButton))
+        {
+            currOperator = "÷";
+            operation = (double a, double b) => a / b;
+        }
+        else if (button.Equals(ModButton))
+        {
+            currOperator = "mod";
+            operation = (double a, double b) => a % b;
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(operand1);
 
@@ -248,22 +240,25 @@ public partial class CalcPage : ContentPage
         {
             return;
         }
-        switch (button.Text)
+
+        if (button.Equals(Pow2Button))
         {
-            case ("x²"):
-                value = value * value;
-                isNegative = false;
-                break;
-            case ("√x"):
-                value = Math.Sqrt(value);
-                break;
-            case ("1/x"):
-                value = 1 / value;
-                break;
-            case ("%"):
-                value = value / 100;
-                break;
+            value = value * value;
+            isNegative = false;
         }
+        else if (button.Equals(SqrtXButton))
+        {
+            value = Math.Sqrt(value);
+        }
+        else if (button.Equals(DivXButton))
+        {
+            value = 1 / value;
+        }
+        else if (button.Equals(PercentButton))
+        {
+            value = value / 100;
+        }
+
         insertion.Clear();
         insertion.Append(Convert.ToString(value));
         insertion = FixString(insertion);
