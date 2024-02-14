@@ -2,181 +2,301 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lab1Pavlovich253505.CalcPage"
-             Title="CalcPage">
+             Title="Calculator">
     <Grid
     ColumnDefinitions="*,*,*,*"
     RowDefinitions="*,*,*,*,*,*,*,*,*,*"
     x:Name="CalcGrid"
-    ColumnSpacing="1"
-    RowSpacing="1">
+    ColumnSpacing="3"
+    RowSpacing="3">
 
         <Button
         x:Name="Num9Button"
         Grid.Column="2"
         Grid.Row="6"
         Text="9" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num8Button"
         Grid.Column="1"
         Grid.Row="6"
         Text="8"
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num7Button"
         Grid.Column="0"
         Grid.Row="6"
         Text="7" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num6Button"
         Grid.Column="2"
         Grid.Row="7"
         Text="6" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num5Button"
         Grid.Column="1"
         Grid.Row="7"
         Text="5" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num4Button"
         Grid.Column="0"
         Grid.Row="7"
         Text="4" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num3Button"
         Grid.Column="2"
         Grid.Row="8"
         Text="3" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num2Button"
         Grid.Column="1"
         Grid.Row="8"
         Text="2" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num1Button"
         Grid.Column="0"
         Grid.Row="8"
         Text="1" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="FractionalButton"
         Grid.Column="2"
         Grid.Row="9"
         Text="," 
-        Clicked="OnFractionalButtonClicked"/>
+        Clicked="OnFractionalButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Num0Button"
         Grid.Column="1"
         Grid.Row="9"
         Text="0" 
-        Clicked="OnNumButtonClicked"/>
+        Clicked="OnNumButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="SignButton"
         Grid.Column="0"
         Grid.Row="9"
         Text="+/-"
-        Clicked="OnSignButtonClicked"/>
+        Clicked="OnSignButtonClicked"
+        Pressed="OnNumButtonPressed"
+        Released="OnNumButtonReleased"
+        BackgroundColor="#3B3B3B"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="AddButton"
         Grid.Column="3"
         Grid.Row="8"
         Text="+"
-        Clicked="OnBinaryExpressionButtonClicked"/>
+        Clicked="OnBinaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="SubButton"
         Grid.Column="3"
         Grid.Row="7"
         Text="-"
-        Clicked="OnBinaryExpressionButtonClicked"/>
+        Clicked="OnBinaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="MulButton"
         Grid.Column="3"
         Grid.Row="6"
         Text="*"
-        Clicked="OnBinaryExpressionButtonClicked"/>
+        Clicked="OnBinaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="DivButton"
         Grid.Column="3"
         Grid.Row="5"
         Text="÷"
-        Clicked="OnBinaryExpressionButtonClicked"/>
+        Clicked="OnBinaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="ClearButton"
         Grid.Column="1"
         Grid.Row="4"
         Text="CE" 
-        Clicked="OnClearButtonClicked"/>
+        Clicked="OnClearButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="ClearAllButton"
         Grid.Column="2"
         Grid.Row="4"
         Text="C"
-        Clicked="OnClearAllButtonClicked"/>
+        Clicked="OnClearAllButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="DelButton"
         Grid.Column="3"
         Grid.Row="4"
         Text="DEL"
-        Clicked="OnDelButtonClicked"/>
+        Clicked="OnDelButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="EqualsButton"
         Grid.Column="3"
         Grid.Row="9"
         Text="=" 
-        Clicked="OnEqualsButtonClicked"/>
+        Clicked="OnEqualsButtonClicked"
+        Pressed="OnEqualsButtonPressed"
+        Released="OnEqualsButtonReleased"
+        BackgroundColor="#4CC2FF"
+        TextColor="#296889"
+        FontSize="25"/>
 
         <Button
         x:Name="DivXButton"
         Grid.Column="0"
         Grid.Row="5"
         Text="1/x"
-        Clicked="OnUnaryExpressionButtonClicked"/>
+        Clicked="OnUnaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="PercentButton"
         Grid.Column="0"
         Grid.Row="4"
         Text="%" 
-        Clicked="OnUnaryExpressionButtonClicked"/>
+        Clicked="OnUnaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="Pow2Button"
         Grid.Column="1"
         Grid.Row="5"
         Text="x²"
-        Clicked="OnUnaryExpressionButtonClicked"/>
+        Clicked="OnUnaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="SqrtXButton"
         Grid.Column="2"
         Grid.Row="5"
         Text="√x"
-        Clicked="OnUnaryExpressionButtonClicked"/>
+        Clicked="OnUnaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Button
         x:Name="ModButton"
@@ -184,7 +304,12 @@
         Grid.Row="3"
         Grid.ColumnSpan="4"    
         Text="mod"
-        Clicked="OnBinaryExpressionButtonClicked"/>
+        Clicked="OnBinaryExpressionButtonClicked"
+        Pressed="OnFunctionButtonPressed"
+        Released="OnFunctionButtonReleased"
+        BackgroundColor="#323232"
+        TextColor="White"
+        FontSize="25"/>
 
         <Grid
             Grid.Column="0"
@@ -199,35 +324,60 @@
             Grid.Column="0"
             Grid.Row="0"
             Text="MC" 
-            Clicked="OnMemoryCleanButtonClicked"/>
+            Clicked="OnMemoryCleanButtonClicked"
+            Pressed="OnMemoryButtonPressed"
+            Released="OnMemoryButtonReleased"
+            BackgroundColor="#1F1F1F"
+            TextColor="White"
+            FontSize="25"/>
 
             <Button
             x:Name="MemCallButton"
             Grid.Column="1"
             Grid.Row="0"
             Text="MR" 
-            Clicked="OnMemoryCallButtonClicked"/>
+            Clicked="OnMemoryCallButtonClicked"
+            Pressed="OnMemoryButtonPressed"
+            Released="OnMemoryButtonReleased"
+            BackgroundColor="#1F1F1F"
+            TextColor="White"
+            FontSize="25"/>
 
             <Button
             x:Name="MemAddButton"
             Grid.Column="2"
             Grid.Row="0"
             Text="M+"
-            Clicked="OnMemoryAddButtonClicked"/>
+            Clicked="OnMemoryAddButtonClicked"
+            Pressed="OnMemoryButtonPressed"
+            Released="OnMemoryButtonReleased"
+            BackgroundColor="#1F1F1F"
+            TextColor="White"
+            FontSize="25"/>
 
             <Button
             x:Name="MemSubButton"
             Grid.Column="3"
             Grid.Row="0"
             Text="M-"
-            Clicked="OnMemorySubButtonClicked"/>
+            Clicked="OnMemorySubButtonClicked"
+            Pressed="OnMemoryButtonPressed"
+            Released="OnMemoryButtonReleased"
+            BackgroundColor="#1F1F1F"
+            TextColor="White"
+            FontSize="25"/>
 
             <Button
             x:Name="MemSaveButton"
             Grid.Column="4"
             Grid.Row="0"
             Text="MS"
-            Clicked="OnMemorySaveButtonClicked"/>
+            Clicked="OnMemorySaveButtonClicked"
+            Pressed="OnMemoryButtonPressed"
+            Released="OnMemoryButtonReleased"
+            BackgroundColor="#1F1F1F"
+            TextColor="White"
+            FontSize="25"/>
         </Grid>
 
         <Label

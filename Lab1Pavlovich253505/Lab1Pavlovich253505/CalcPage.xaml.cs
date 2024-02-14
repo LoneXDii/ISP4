@@ -165,8 +165,11 @@ public partial class CalcPage : ContentPage
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(operand1);
 
-        if(stringBuilder.ToString() != EnterLabel.Text)
+        if (stringBuilder.ToString() != EnterLabel.Text)
+        {
+            stringBuilder = FixString(stringBuilder);
             EnterLabel.Text = stringBuilder.ToString();
+        }
 
         stringBuilder.Append(" ");
         stringBuilder.Append(currOperator);
@@ -210,27 +213,46 @@ public partial class CalcPage : ContentPage
         else
             isNegative = true;
 
+        insertion = FixString(insertion);
         EnterLabel.Text = insertion.ToString();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(operand1.ToString()); ;
+        StringBuilder temp = new StringBuilder();
+        temp.Append(operand1.ToString());
+        temp = FixString(temp);
+        stringBuilder.Append(temp.ToString()); ;
+
         stringBuilder.Append(" ");
         stringBuilder.Append(currOperator);
         stringBuilder.Append(" ");
-        stringBuilder.Append(operand2.ToString());
+
+        temp.Clear();
+        temp.Append(operand2.ToString());
+        temp = FixString(temp);
+        stringBuilder.Append(temp.ToString());
         stringBuilder.Append(" ");
         stringBuilder.Append("=");
+
         ExpressionLabel.Text = stringBuilder.ToString();
     }
 
     private void OnUnaryExpressionButtonClicked(object sender, EventArgs e)
     {
         Button button = (Button)sender;
-        double value = Convert.ToDouble(EnterLabel.Text);
+        double value = 0;
+        try
+        {
+            value = Convert.ToDouble(EnterLabel.Text);
+        }
+        catch
+        {
+            return;
+        }
         switch (button.Text)
         {
             case ("x²"):
                 value = value * value;
+                isNegative = false;
                 break;
             case ("√x"):
                 value = Math.Sqrt(value);
@@ -244,7 +266,23 @@ public partial class CalcPage : ContentPage
         }
         insertion.Clear();
         insertion.Append(Convert.ToString(value));
+        insertion = FixString(insertion);
         EnterLabel.Text = insertion.ToString();
+    }
+
+    private StringBuilder FixString(StringBuilder sb)
+    {
+        int ePos = sb.Length - 1;
+        if (sb.ToString().Contains("E"))
+        {
+            ePos = sb.ToString().IndexOf("E");
+        }
+        if (sb.Length > 11)
+        {
+            int len = sb.Length - 11;
+            sb.Remove(ePos - len, len);
+        }
+        return sb;
     }
 
     private void OnClearButtonClicked(object sender, EventArgs e)
@@ -344,5 +382,53 @@ public partial class CalcPage : ContentPage
         {
             return;
         }
+    }
+
+    private void OnNumButtonPressed(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#323232");
+    }
+
+    private void OnNumButtonReleased(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#3B3B3B");
+    }
+
+    private void OnFunctionButtonPressed(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#3B3B3B");
+    }
+
+    private void OnFunctionButtonReleased(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#323232");
+    }
+
+    private void OnMemoryButtonPressed(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#323232");
+    }
+
+    private void OnMemoryButtonReleased(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#1F1F1F");
+    }
+
+    private void OnEqualsButtonPressed(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#47B1E8");
+    }
+
+    private void OnEqualsButtonReleased(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        button.BackgroundColor = Color.FromArgb("#4CC2FF");
     }
 }
