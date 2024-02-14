@@ -198,31 +198,36 @@
             x:Name="MemCleanButton"
             Grid.Column="0"
             Grid.Row="0"
-            Text="MC" />
+            Text="MC" 
+            Clicked="OnMemoryCleanButtonClicked"/>
 
             <Button
             x:Name="MemCallButton"
             Grid.Column="1"
             Grid.Row="0"
-            Text="MR" />
+            Text="MR" 
+            Clicked="OnMemoryCallButtonClicked"/>
 
             <Button
             x:Name="MemAddButton"
             Grid.Column="2"
             Grid.Row="0"
-            Text="M+" />
+            Text="M+"
+            Clicked="OnMemoryAddButtonClicked"/>
 
             <Button
-            x:Name="MemRemoveButton"
+            x:Name="MemSubButton"
             Grid.Column="3"
             Grid.Row="0"
-            Text="M-" />
+            Text="M-"
+            Clicked="OnMemorySubButtonClicked"/>
 
             <Button
             x:Name="MemSaveButton"
             Grid.Column="4"
             Grid.Row="0"
-            Text="MS" />
+            Text="MS"
+            Clicked="OnMemorySaveButtonClicked"/>
         </Grid>
 
         <Label

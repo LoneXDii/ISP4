@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Lab1Pavlovich253505;
@@ -15,6 +16,7 @@ public partial class CalcPage : ContentPage
     private double? operand2 = null;
     private string currOperator = "";
     private Func<double, double, double>? operation = null;
+    private double? memory = null;
 
     public CalcPage()
     {
@@ -107,14 +109,14 @@ public partial class CalcPage : ContentPage
     }
 
     private void OnBinaryExpressionButtonClicked(object sender, EventArgs e)
-    {
-        operand2 = null;
+    {  
         Button button = (Button)sender;
-        operand1 = Convert.ToDouble(insertion.ToString());
+        operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
         insertion.Clear();
         insertion.Append('0');
         isNegative = false;
         isFractional = false;
+
         switch (button.Text)
         {
             case "+":
@@ -138,11 +140,13 @@ public partial class CalcPage : ContentPage
                 operation = (double a, double b) => a % b;
                 break;
         }
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(operand1);
         stringBuilder.Append(" ");
         stringBuilder.Append(currOperator);
         ExpressionLabel.Text = stringBuilder.ToString();
+        operand2 = null;
     }
 
     private void OnEqualsButtonClicked(object sender, EventArgs e)
@@ -150,15 +154,13 @@ public partial class CalcPage : ContentPage
         try
         {
             if(operand2 is null)
-                operand2 = Convert.ToDouble(insertion.ToString());
-            else operand1 = Convert.ToDouble(insertion.ToString());
+                operand2 = Convert.ToDouble(EnterLabel.Text.ToString());
+            else operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
         }
         catch
         {
             return;
         }
-
-        insertion.Clear();
 
         double answ;
         if (operation is not null &&
@@ -169,8 +171,8 @@ public partial class CalcPage : ContentPage
         }
         else
             return;
-            
 
+        insertion.Clear();
         insertion.Append(Convert.ToString(answ));
 
         if (answ - Math.Floor(answ) == 0)
@@ -242,5 +244,80 @@ public partial class CalcPage : ContentPage
         operation = null;
         EnterLabel.Text = "0";
         ExpressionLabel.Text = "";
+    }
+
+    private void OnMemoryCleanButtonClicked(object sender, EventArgs e)
+    {
+        memory = null;
+    }
+
+    private void OnMemoryCallButtonClicked(object sender, EventArgs e)
+    {
+        if (memory is not null)
+        {
+            if(memory - Math.Floor((double)memory) != 0)
+                isFractional = true;
+            else
+                isFractional = false;
+
+            if(memory >= 0)
+                isNegative = false;
+            else
+                isNegative = true;
+
+            insertion.Clear();
+            insertion.Append(memory.ToString());
+            EnterLabel.Text = memory.ToString();
+        }
+    }
+
+    private void OnMemoryAddButtonClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if (memory is not null)
+            {
+                memory += Convert.ToDouble(EnterLabel.Text);
+            }
+            else
+            {
+                memory = Convert.ToDouble(EnterLabel.Text);
+            }
+        }
+        catch 
+        {
+            return;
+        }
+    }
+
+    private void OnMemorySubButtonClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if (memory is not null)
+            {
+                memory -= Convert.ToDouble(EnterLabel.Text);
+            }
+            else
+            {
+                memory = -Convert.ToDouble(EnterLabel.Text);
+            }
+        }
+        catch
+        {
+            return;
+        }
+    }
+
+    private void OnMemorySaveButtonClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            memory = Convert.ToDouble(EnterLabel.Text);
+        }
+        catch
+        {
+            return;
+        }
     }
 }
