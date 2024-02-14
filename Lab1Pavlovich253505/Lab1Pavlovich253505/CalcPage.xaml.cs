@@ -66,6 +66,8 @@ public partial class CalcPage : ContentPage
 
     private void OnDelButtonClicked(object sender, EventArgs e)
     {
+        insertion.Clear();
+        insertion.Append(EnterLabel.Text);
         if (insertion.ToString() == "0") return;
         if (insertion.Length > 0)
         {
@@ -109,13 +111,32 @@ public partial class CalcPage : ContentPage
     }
 
     private void OnBinaryExpressionButtonClicked(object sender, EventArgs e)
-    {  
-        Button button = (Button)sender;
-        operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
+    {
+        bool isReadyForOperation = false;
+        if(insertion.ToString() == EnterLabel.Text && !ExpressionLabel.Text.Contains('='))
+        {
+            isReadyForOperation = true;
+        }
+        
+        if (isReadyForOperation && operation is not null && operand1 is not null)
+        {
+            try
+            {
+                operand1 = operation(Convert.ToDouble(EnterLabel.Text), (double)operand1);
+            }
+            catch { }
+        }
+        else
+        {
+            operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
+        }
+
         insertion.Clear();
         insertion.Append('0');
         isNegative = false;
         isFractional = false;
+
+        Button button = (Button)sender;
 
         switch (button.Text)
         {
@@ -140,9 +161,13 @@ public partial class CalcPage : ContentPage
                 operation = (double a, double b) => a % b;
                 break;
         }
-
+        
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(operand1);
+
+        if(stringBuilder.ToString() != EnterLabel.Text)
+            EnterLabel.Text = stringBuilder.ToString();
+
         stringBuilder.Append(" ");
         stringBuilder.Append(currOperator);
         ExpressionLabel.Text = stringBuilder.ToString();
