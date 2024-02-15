@@ -30,26 +30,7 @@ public partial class CalcPage : ContentPage
 
         Button button = (Button)sender;
 
-        if (button.Equals(Num0Button))
-            insertion.Append("0");
-        else if (button.Equals(Num1Button))
-            insertion.Append("1");
-        else if (button.Equals(Num2Button))
-            insertion.Append("2");
-        else if (button.Equals(Num3Button))
-            insertion.Append("3");
-        else if (button.Equals(Num4Button))
-            insertion.Append("4");
-        else if (button.Equals(Num5Button))
-            insertion.Append("5");
-        else if (button.Equals(Num6Button))
-            insertion.Append("6");
-        else if (button.Equals(Num7Button))
-            insertion.Append("7");
-        else if (button.Equals(Num8Button))
-            insertion.Append("8");
-        else if (button.Equals(Num9Button))
-            insertion.Append("9");
+        insertion.Append(button.Text);
 
         EnterLabel.Text = insertion.ToString();
     }
