@@ -99,7 +99,11 @@ public partial class CalcPage : ContentPage
         }
         else
         {
-            operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
+            try
+            {
+                operand1 = Convert.ToDouble(EnterLabel.Text.ToString());
+            }
+            catch { }
         }
 
         insertion.Clear();
