@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab1Pavlovich253505.ProgressBar"
+             Title="ProgressBar">
+    <Grid
+        RowDefinitions="*"
+        ColumnDefinitions="*">
+        
+        <Label
+            Grid.Column="0" 
+            Grid.Row="0"
+            x:Name="StatusLabel"
+            Text="Test"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"/>
+        
+        <Grid
+            ColumnDefinitions="6*,*"
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalOptions="Center"
+            >
+
+            <ProgressBar
+                x:Name="CalculationProgressBar"
+                Grid.Column="0"
+                Progress="0"
+                ProgressColor="Blue"
+                VerticalOptions="Center"
+                Margin="10"/>
+
+            <Label
+                x:Name="ProgressPercentLabel"
+                Grid.Column="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Text="0%"
+                Margin="6"/>
+
+        </Grid>
+
+        <Grid
+            ColumnDefinitions="*,*"
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalOptions="End"
+            Margin="100">
+
+            <Button
+                Text="1"
+                Grid.Column="0"
+                x:Name="StartButton"
+                WidthRequest="100"
+                HorizontalOptions="End"
+                Margin="5"/>
+            
+            <Button
+                HorizontalOptions="Start"
+                Text="2"
+                Grid.Column="1"
+                x:Name="FinishButton"
+                WidthRequest="100"
+                Margin="5"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>

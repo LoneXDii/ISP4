@@ -9,16 +9,23 @@
 
     <FlyoutItem Title="Main">
         <ShellContent
-    Title="Main"
-    ContentTemplate="{DataTemplate local:MainPage}"
-/>
+            Title="Main"
+            ContentTemplate="{DataTemplate local:MainPage}"
+        />
     </FlyoutItem>
 
     <FlyoutItem Title="Calculator">
         <ShellContent
-    Title="Calculator"
-    ContentTemplate="{DataTemplate local:CalcPage}"
-/>
+            Title="Calculator"
+            ContentTemplate="{DataTemplate local:CalcPage}"
+        />
+    </FlyoutItem>
+
+    <FlyoutItem Title="ProgressBar">
+        <ShellContent
+            Title="Progress bar"
+            ContentTemplate="{DataTemplate local:ProgressBar}"
+        />
     </FlyoutItem>
 
 </Shell>
