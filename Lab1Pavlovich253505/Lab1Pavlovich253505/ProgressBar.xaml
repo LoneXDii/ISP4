@@ -45,22 +45,23 @@
             Grid.Row="0"
             Grid.Column="0"
             VerticalOptions="End"
-            Margin="100">
+            Margin="60">
 
             <Button
-                Text="1"
+                Text="Start"
                 Grid.Column="0"
                 x:Name="StartButton"
-                WidthRequest="100"
+                WidthRequest="120"
                 HorizontalOptions="End"
-                Margin="5"/>
+                Margin="5"
+                Clicked="OnStartButtonClicked"/>
             
             <Button
                 HorizontalOptions="Start"
-                Text="2"
+                Text="Stop"
                 Grid.Column="1"
                 x:Name="FinishButton"
-                WidthRequest="100"
+                WidthRequest="120"
                 Margin="5"/>
 
         </Grid>
