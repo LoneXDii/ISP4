@@ -15,4 +15,7 @@ public class HotelRoomFeature
     public int Id { get; set; }
     public string Name { get; set; } = "";
     public string Description { get; set; } = "";
+
+    [Indexed]
+    public int HotelRoomCategoryId { get; set; }
 }
