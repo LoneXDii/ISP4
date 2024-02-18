@@ -58,11 +58,12 @@
             
             <Button
                 HorizontalOptions="Start"
-                Text="Stop"
+                Text="Cancel"
                 Grid.Column="1"
                 x:Name="FinishButton"
                 WidthRequest="120"
-                Margin="5"/>
+                Margin="5"
+                Clicked="OnCancellButtonClicked"/>
 
         </Grid>
     </Grid>
