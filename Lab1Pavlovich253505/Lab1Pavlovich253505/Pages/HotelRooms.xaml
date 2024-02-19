@@ -14,6 +14,7 @@
                 SelectedIndexChanged="OnSelectedIndexChanged"
                 Grid.Column="0"
                 Grid.Row="0"
+                BackgroundColor="#3B3B3B"
         />
         
         <CollectionView x:Name="CategoryFeaturesView"
@@ -22,10 +23,13 @@
                         ItemsLayout="VerticalList">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="5">
+                    <Frame Margin="5" BackgroundColor="#323232">
                         <Grid RowDefinitions="*"
                               ColumnDefinitions="*">
-                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   TextColor="White"/>
                         </Grid>
                     </Frame>
                 </DataTemplate>
