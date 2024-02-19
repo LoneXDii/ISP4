@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Lab1Pavlovich253505.Services;
+using Microsoft.Extensions.Logging;
 
 namespace Lab1Pavlovich253505
 {
@@ -14,7 +15,8 @@ namespace Lab1Pavlovich253505
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddTransient<IDbService, SQLiteService>();
+            builder.Services.AddSingleton<HotelRooms>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

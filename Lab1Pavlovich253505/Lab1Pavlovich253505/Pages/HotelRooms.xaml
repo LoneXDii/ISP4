@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab1Pavlovich253505.HotelRooms"
+             Title="HotelRooms"
+             Loaded="OnPageLoaded">
+    <Grid RowDefinitions="auto,auto"
+          ColumnDefinitions="*">
+        <Picker Title="Select hotel room category"
+                x:Name="RoomPicker"
+                ItemsSource="{Binding hotelRoomCategories}"
+                SelectedItem="{Binding Name}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedIndexChanged="OnSelectedIndexChanged"
+                Grid.Column="0"
+                Grid.Row="0"
+        />
+        
+        <CollectionView x:Name="CategoryFeaturesView"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        ItemsLayout="VerticalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5">
+                        <Grid RowDefinitions="*"
+                              ColumnDefinitions="*">
+                            <Label Text="{Binding Name}"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

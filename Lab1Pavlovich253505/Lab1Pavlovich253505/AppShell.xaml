@@ -21,11 +21,17 @@
         />
     </FlyoutItem>
 
-    <FlyoutItem Title="ProgressBar">
+    <FlyoutItem Title="Progress Bar">
         <ShellContent
             Title="Progress bar"
             ContentTemplate="{DataTemplate local:ProgressBar}"
         />
     </FlyoutItem>
 
+    <FlyoutItem Title="Hotel rooms">
+        <ShellContent
+            Title="Hotel rooms"
+            ContentTemplate="{DataTemplate local:HotelRooms}"
+        />
+    </FlyoutItem>
 </Shell>

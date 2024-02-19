@@ -32,6 +32,7 @@ class SQLiteService:IDbService
         if (database != null) return;
         string dbPath = Path.Combine(FileSystem.AppDataDirectory, "database.db");
         database = new SQLiteConnection(dbPath);
+
         database.DropTable<HotelRoomCategory>();
         database.DropTable<HotelRoomFeature>();
 
@@ -67,6 +68,6 @@ class SQLiteService:IDbService
         };
 
         database.InsertAll(categoties);
-
+        database.InsertAll(features);
     }
 }
