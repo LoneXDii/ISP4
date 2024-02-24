@@ -6,10 +6,11 @@ namespace Lab1Pavlovich253505;
 public partial class ConverterPage : ContentPage
 {
 	private IRateService rateService;
-    private decimal? officialRate = 0;
-    private int scale = 0;
-    private string currencyName = "";
+    private Rate? currentRate = null;
     private bool isInEntryEntered = false;
+    private List<string> currencyCodes = new List<string> {"RUB", "EUR", "USD", "CHF", "CNY", "GBP"};
+    private List<Rate> currentRates = new();
+
     public ConverterPage(IRateService service)
     {
         InitializeComponent();
@@ -18,58 +19,94 @@ public partial class ConverterPage : ContentPage
         isInEntryEntered = true;
     }
 
+    private void OnPageLoaded(object sender, EventArgs e) 
+    {
+        CurrencyPicker.ItemsSource = currencyCodes;
+        GetRates();
+    }
 
     private void OnCurrencyPickerChanged(object sender, EventArgs e)
 	{
         var picker = (Picker)sender;
-        currencyName = (string)picker.SelectedItem;
-        GetRate();
+        string currencyName = (string)picker.SelectedItem;
+        foreach (var item in currentRates)
+        {
+            if (item.Cur_Abbreviation == currencyName)
+            {
+                currentRate = item;
+                break;
+            }
+        }
+        ChangeCurrencyEntry();
 	}
 
     private void OnDateSelected(object sender, EventArgs e)
     {
-        if (currencyName == "") return;
-        GetRate();
+        GetRates();
+        ChangeCurrencyEntry();
     }
     private void OnBYNEntryChanged(object sender, EventArgs e)
 	{
         if (!isInEntryEntered) return;
-        if (officialRate == 0 || BYNEntry.Text == "")
+        if (currentRate is null || BYNEntry.Text == "")
         {
             BYNEntry.Text = "";
             return;
         }
-        isInEntryEntered = false;
-        decimal? sum;
-        try
-        {
-            sum = Convert.ToDecimal(BYNEntry.Text);
-            sum /= officialRate / scale;
-            sum = Math.Round(sum.Value, 4);
-            CurrencyEntry.Text = sum.ToString();
-            isInEntryEntered = true;
-        }
-        catch
-        {
-            isInEntryEntered = true;
-            return;
-        }
+        ChangeCurrencyEntry();
     }
 
 	private void OnCurrencyEntryChanged(object sender, EventArgs e)
 	{
         if (!isInEntryEntered) return;
-        if (officialRate == 0 || CurrencyEntry.Text == "")
+        if (currentRate is null || CurrencyEntry.Text == "")
         {
             CurrencyEntry.Text = "";
             return;
         }
+        ChangeBynEntry();
+    }
+
+    private void GetRates()
+    {
+        List<Rate> rates;
+        try
+        {
+            rates = rateService.GetRates(RateDatePicker.Date).ToList();
+        }
+        catch
+        {
+            return;
+        }
+
+        currentRates = new List<Rate>();
+        foreach (var rate in rates)
+        {
+            if(currencyCodes.Contains(rate.Cur_Abbreviation)) currentRates.Add(rate);
+        }
+
+        if(currentRate is not null)
+        {
+            string currencyName = currentRate.Cur_Abbreviation;
+            foreach (var item in currentRates)
+            {
+                if (item.Cur_Abbreviation == currencyName)
+                {
+                    currentRate = item;
+                    break;
+                }
+            }
+        }
+    }
+
+    private void ChangeBynEntry()
+    {
         isInEntryEntered = false;
         decimal? sum;
         try
         {
             sum = Convert.ToDecimal(CurrencyEntry.Text);
-            sum *= officialRate / scale;
+            sum *= currentRate.Cur_OfficialRate / currentRate.Cur_Scale;
             sum = Math.Round(sum.Value, 4);
             BYNEntry.Text = sum.ToString();
             isInEntryEntered = true;
@@ -81,33 +118,14 @@ public partial class ConverterPage : ContentPage
         }
     }
 
-    private void GetRate()
+    private void ChangeCurrencyEntry()
     {
-        List<Rate> rates;
-        try
-        {
-            rates = rateService.GetRates(RateDatePicker.Date).ToList();
-        }
-        catch
-        {
-            return;
-        }
-        foreach (var rate in rates)
-        {
-            if (rate.Cur_Abbreviation == currencyName)
-            {
-                officialRate = rate.Cur_OfficialRate;
-                scale = rate.Cur_Scale;
-                break;
-            }
-        }
-
         isInEntryEntered = false;
         decimal? sum;
         try
         {
             sum = Convert.ToDecimal(BYNEntry.Text);
-            sum /= officialRate / scale;
+            sum /= currentRate.Cur_OfficialRate / currentRate.Cur_Scale;
             sum = Math.Round(sum.Value, 4);
             CurrencyEntry.Text = sum.ToString();
             isInEntryEntered = true;

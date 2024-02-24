@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lab1Pavlovich253505.ConverterPage"
-             Title="Converter">
+             Title="Converter"
+             Loaded="OnPageLoaded">
     <Grid RowDefinitions="*"
           ColumnDefinitions="*">
         
@@ -30,20 +31,13 @@
                        TextChanged="OnBYNEntryChanged"
                        HorizontalTextAlignment="Center"/>
 
-                <Picker Grid.Row="0"
+                <Picker x:Name="CurrencyPicker"
+                        Grid.Row="0"
                         Grid.Column="1"
                         WidthRequest="100"
                         HorizontalTextAlignment="Center"
-                        SelectedIndexChanged="OnCurrencyPickerChanged">
-                    
-                    <Picker.Items>
-                        <x:String>RUB</x:String>
-                        <x:String>EUR</x:String>
-                        <x:String>USD</x:String>
-                        <x:String>CHF</x:String>
-                        <x:String>CNY</x:String>
-                        <x:String>GBP</x:String>
-                    </Picker.Items>
+                        SelectedIndexChanged="OnCurrencyPickerChanged"
+                        ItemsSource="{Binding currencyCodes}">
                 </Picker>
 
                 <Entry x:Name ="CurrencyEntry"
