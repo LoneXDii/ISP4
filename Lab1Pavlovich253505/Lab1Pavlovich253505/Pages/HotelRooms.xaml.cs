@@ -25,7 +25,7 @@ public partial class HotelRooms : ContentPage
 		if (picker.SelectedIndex != -1)
 		{
 			int index = ((HotelRoomCategory)picker.SelectedItem).Id;
-			var categoryFeatures = dbService.GetCategoryFeatures(index + 1).ToList();
+			var categoryFeatures = dbService.GetCategoryFeatures(index).ToList();
 			CategoryFeaturesView.ItemsSource = categoryFeatures;
 		}
 	}

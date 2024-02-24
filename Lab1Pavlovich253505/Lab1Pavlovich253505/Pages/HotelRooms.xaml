@@ -15,6 +15,7 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 BackgroundColor="#3B3B3B"
+                FontSize="20"
         />
         
         <CollectionView x:Name="CategoryFeaturesView"
@@ -23,15 +24,20 @@
                         ItemsLayout="VerticalList">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="5" BackgroundColor="#323232">
+                    <Border Margin="5"
+                            BackgroundColor="#323232"
+                            StrokeShape="RoundRectangle 40, 40, 40, 40">
                         <Grid RowDefinitions="*"
                               ColumnDefinitions="*">
                             <Label Text="{Binding Name}"
                                    Grid.Column="0"
                                    Grid.Row="0"
-                                   TextColor="White"/>
+                                   TextColor="White"
+                                   FontSize="15"
+                                   Margin="10"
+                                   />
                         </Grid>
-                    </Frame>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

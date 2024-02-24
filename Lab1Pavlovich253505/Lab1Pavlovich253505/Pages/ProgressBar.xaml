@@ -11,7 +11,7 @@
             Grid.Column="0" 
             Grid.Row="0"
             x:Name="StatusLabel"
-            Text="Test"
+            Text="Welcome to .NET MAUI"
             VerticalOptions="Start"
             HorizontalOptions="Center"/>
         

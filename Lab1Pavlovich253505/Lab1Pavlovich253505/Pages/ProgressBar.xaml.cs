@@ -48,7 +48,10 @@ public partial class ProgressBar : ContentPage
 
     private void OnCancellButtonClicked(object sender, EventArgs e)
     {
-        StatusLabel.Text = "Задание отменено";
-        cancellationTokenSource.Cancel();
+        if (!StartButton.IsEnabled)
+        {
+            StatusLabel.Text = "Задание отменено";
+            cancellationTokenSource.Cancel();
+        }
     }
 }
