@@ -27,12 +27,12 @@
 
     <FlyoutItem Title="Hotel rooms">
         <ShellContent Title="Hotel rooms"
-                      ContentTemplate="{DataTemplate local:HotelRooms}"
+                      ContentTemplate="{DataTemplate local:HotelRoomsPage}"
         />
     </FlyoutItem>
 
     <FlyoutItem Title="Converter">
         <ShellContent Title="Converter"
-                      ContentTemplate="{DataTemplate local:Converter}"/>
+                      ContentTemplate="{DataTemplate local:ConverterPage}"/>
     </FlyoutItem>
 </Shell>

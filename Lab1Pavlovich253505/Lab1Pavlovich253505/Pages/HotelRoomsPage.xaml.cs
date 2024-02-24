@@ -3,14 +3,13 @@ using Lab1Pavlovich253505.Services;
 
 namespace Lab1Pavlovich253505;
 
-public partial class HotelRooms : ContentPage
+public partial class HotelRoomsPage : ContentPage
 {
 	private IDbService dbService;
-	public HotelRooms(IDbService service)
+	public HotelRoomsPage(IDbService service)
 	{
 		InitializeComponent();
 		dbService = service;
-		BindingContext = this;
 	}
 
 	private void OnPageLoaded(object sender, EventArgs e)

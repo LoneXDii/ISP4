@@ -16,9 +16,12 @@ namespace Lab1Pavlovich253505
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddTransient<IDbService, SQLiteService>();
-            builder.Services.AddSingleton<HotelRooms>();
+            builder.Services.AddSingleton<HotelRoomsPage>();
+            builder.Services.AddTransient<IRateService, RateService>();
+            builder.Services.AddSingleton<ConverterPage>();
+            builder.Services.AddHttpClient<IRateService, RateService>(opt => opt.BaseAddress = new Uri("https://www.nbrb.by/api/exrates/rates"));
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
