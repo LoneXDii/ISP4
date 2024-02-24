@@ -41,7 +41,7 @@
                         <x:String>USD</x:String>
                         <x:String>CHF</x:String>
                         <x:String>CNY</x:String>
-                        <x:String>GPB</x:String>
+                        <x:String>GBP</x:String>
                     </Picker.Items>
                 </Picker>
 
