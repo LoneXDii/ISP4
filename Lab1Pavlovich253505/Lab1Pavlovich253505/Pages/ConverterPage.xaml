@@ -27,7 +27,8 @@
                        Margin="10"
                        Grid.Row="1"
                        Grid.Column="0"
-                       TextChanged="OnBYNEntryChanged"/>
+                       TextChanged="OnBYNEntryChanged"
+                       HorizontalTextAlignment="Center"/>
 
                 <Picker Grid.Row="0"
                         Grid.Column="1"
@@ -50,7 +51,8 @@
                        Margin="10"
                        Grid.Row="1"
                        Grid.Column="1"
-                       TextChanged="OnCurrencyEntryChanged"/>
+                       TextChanged="OnCurrencyEntryChanged"
+                       HorizontalTextAlignment="Center"/>
             </Grid>
             
             <DatePicker x:Name="RateDatePicker"
@@ -59,7 +61,8 @@
                         HorizontalOptions="Center"
                         Format="dd/MM/yyyy"
                         MinimumDate="01/01/2000"
-                        Margin="50"/>
+                        Margin="50"
+                        DateSelected="OnDateSelected"/>
         </Grid>
     </Grid>
 </ContentPage>
