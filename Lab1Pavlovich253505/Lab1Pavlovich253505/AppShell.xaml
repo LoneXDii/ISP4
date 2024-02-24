@@ -8,30 +8,31 @@
     Title="Lab1Pavlovich253505">
 
     <FlyoutItem Title="Main">
-        <ShellContent
-            Title="Main"
-            ContentTemplate="{DataTemplate local:MainPage}"
+        <ShellContent Title="Main"
+                      ContentTemplate="{DataTemplate local:MainPage}"
         />
     </FlyoutItem>
 
     <FlyoutItem Title="Calculator">
-        <ShellContent
-            Title="Calculator"
-            ContentTemplate="{DataTemplate local:CalcPage}"
+        <ShellContent Title="Calculator"
+                      ContentTemplate="{DataTemplate local:CalcPage}"
         />
     </FlyoutItem>
 
     <FlyoutItem Title="Progress Bar">
-        <ShellContent
-            Title="Progress bar"
-            ContentTemplate="{DataTemplate local:ProgressBar}"
+        <ShellContent Title="Progress bar"
+                      ContentTemplate="{DataTemplate local:ProgressBar}"
         />
     </FlyoutItem>
 
     <FlyoutItem Title="Hotel rooms">
-        <ShellContent
-            Title="Hotel rooms"
-            ContentTemplate="{DataTemplate local:HotelRooms}"
+        <ShellContent Title="Hotel rooms"
+                      ContentTemplate="{DataTemplate local:HotelRooms}"
         />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Converter">
+        <ShellContent Title="Converter"
+                      ContentTemplate="{DataTemplate local:Converter}"/>
     </FlyoutItem>
 </Shell>
