@@ -14,6 +14,7 @@ public partial class ConverterPage : ContentPage
     public ConverterPage(IRateService service)
     {
         InitializeComponent();
+        Connectivity.ConnectivityChanged += OnConnectivityChanged;
         rateService = service;
         RateDatePicker.MaximumDate = DateTime.Today;
         isInEntryEntered = true;
@@ -22,7 +23,20 @@ public partial class ConverterPage : ContentPage
     private void OnPageLoaded(object sender, EventArgs e) 
     {
         CurrencyPicker.ItemsSource = currencyCodes;
+        ConnectivityLabel.Text = "";
         GetRates();
+    }
+
+    private void OnConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)
+    {
+        if(e.NetworkAccess == NetworkAccess.Internet)
+        {
+            OnPageLoaded(sender, EventArgs.Empty);
+        }
+        else
+        {
+            ConnectivityLabel.Text = "Отсутствует подключение к интернету";
+        }
     }
 
     private void OnCurrencyPickerChanged(object sender, EventArgs e)
@@ -97,6 +111,7 @@ public partial class ConverterPage : ContentPage
                 }
             }
         }
+        RatesView.ItemsSource = currentRates;
     }
 
     private void ChangeBynEntry()

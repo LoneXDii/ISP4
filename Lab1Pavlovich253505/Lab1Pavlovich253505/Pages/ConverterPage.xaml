@@ -4,9 +4,40 @@
              x:Class="Lab1Pavlovich253505.ConverterPage"
              Title="Converter"
              Loaded="OnPageLoaded">
-    <Grid RowDefinitions="*"
+    <Grid RowDefinitions="*,*"
           ColumnDefinitions="*">
-        
+
+        <VerticalStackLayout Grid.Row="0">
+            <Label x:Name="ConnectivityLabel"
+                   Text=""
+                   HorizontalOptions="Center"/>
+            <Label Text="Оффициальные курсы валют:"
+                   HorizontalOptions="Center"/>
+            <CollectionView x:Name="RatesView"
+                            ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Label Text="{Binding Cur_Scale}"
+                                   Margin="2"/>
+                            <Label Text="{Binding Cur_Name}"
+                                   Margin="2"/>
+                            <Label Text="("
+                                   Margin="2"/>
+                            <Label Text="{Binding Cur_Abbreviation}"
+                                   Margin="2"/>
+                            <Label Text=") ="
+                                   Margin="2"/>
+                            <Label Text="{Binding Cur_OfficialRate}"
+                                   Margin="2"/>
+                            <Label Text="BYN"
+                                   Margin="2"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
         <Grid RowDefinitions="auto,auto"
               ColumnDefinitions="*"
               Grid.Row="1"
