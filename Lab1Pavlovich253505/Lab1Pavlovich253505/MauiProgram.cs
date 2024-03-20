@@ -17,6 +17,7 @@ namespace Lab1Pavlovich253505
                 });
             builder.Services.AddTransient<IDbService, SQLiteService>();
             builder.Services.AddSingleton<HotelRoomsPage>();
+
             builder.Services.AddTransient<IRateService, RateService>();
             builder.Services.AddSingleton<ConverterPage>();
             builder.Services.AddHttpClient<IRateService, RateService>(opt => opt.BaseAddress = new Uri("https://www.nbrb.by/api/exrates/rates"));

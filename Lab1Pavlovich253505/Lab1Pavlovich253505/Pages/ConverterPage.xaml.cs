@@ -24,7 +24,7 @@ public partial class ConverterPage : ContentPage
     {
         CurrencyPicker.ItemsSource = currencyCodes;
         ConnectivityLabel.Text = "";
-        GetRates();
+        GetRates();                                             
     }
 
     private void OnConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)

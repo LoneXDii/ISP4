@@ -42,7 +42,7 @@ public partial class ProgressBar : ContentPage
         StatusLabel.Text = "Вычисление";
         cancellationTokenSource = new CancellationTokenSource();
         cancellationToken = cancellationTokenSource.Token;
-        await calculate();
+        await Task.Run(()=>calculate());
         StartButton.IsEnabled = true;
     }
 
