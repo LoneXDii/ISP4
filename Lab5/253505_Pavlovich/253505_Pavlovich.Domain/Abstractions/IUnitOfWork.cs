@@ -12,6 +12,6 @@ public interface IUnitOfWork
     IRepository<CarBrand> CarBrandRepository { get; }
     IRepository<SaleAdvertisement> SaleAdvertisementRepository { get; }
     public Task SaveAllAsync();
-    public Task DeleteDatabaseAsync();
-    public Task CreateDatabaseAsync();
+    public Task DeleteDataBaseAsync();
+    public Task CreateDataBaseAsync();
 }

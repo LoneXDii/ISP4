@@ -12,13 +12,13 @@ public interface IRepository<T> where T : Entity
 {
     Task<T> GetByIdAsync(int id,
         CancellationToken cancellationToken = default,
-        params Expression<Func<T, object>>[]? includedProperties);
+        params Expression<Func<T, object>>[] includedProperties);
 
-    Task<T> ListAllAsync(CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default);
 
-    Task<IReadOnlyList<T>> ListFiltredAsync(Expression<Func<T, object>> filter,
+    Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter,
         CancellationToken cancellationToken = default,
-        params Expression<Func<T, object>>[]? includedProperties);
+        params Expression<Func<T, object>>[] includedProperties);
 
     Task AddAsync(T entity, CancellationToken cancellationToken = default);
 
@@ -26,6 +26,6 @@ public interface IRepository<T> where T : Entity
 
     Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
 
-    Task<T> FirstOrDefaultAsync(Expression<Func<T, object>> filter,
+    Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter,
         CancellationToken cancellationToken = default);
 }
