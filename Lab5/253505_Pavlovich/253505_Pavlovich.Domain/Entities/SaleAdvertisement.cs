@@ -25,17 +25,17 @@ public class SaleAdvertisement : Entity
     public Car CarInfo { get; private set; }
     public Salesman SalesmanInfo { get; private set; }
     public double Cost { get; private set; }
-    public int CarModelId { get; private set; }
+    public int? CarBrandId { get; private set; }
 
-    public void AddToBrandAdvertisements(int carModeId)
+    public void AddToBrandAdvertisements(int carBrandId)
     {
-        if (CarModelId <= 0) return;
-        CarModelId = CarModelId;
+        if (CarBrandId <= 0) return;
+        CarBrandId = carBrandId;
     }
 
     public void DeleteFromBrandAdvertisements()
     {
-        CarModelId = 0;
+        CarBrandId = 0;
     }
 
     public void ChangeCost(double cost)
