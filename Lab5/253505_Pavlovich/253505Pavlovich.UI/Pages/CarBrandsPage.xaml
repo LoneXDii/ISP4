@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:_253505_Pavlovich.Domain.Entities;assembly=253505Pavlovich.Domain"
+             x:DataType="models:CarBrandsPageViewModel"
+             x:Class="_253505Pavlovich.UI.Pages.CarBrandsPage"
+             Title="CarBrandsPage">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding UpdateGroupListCommand}"/>
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="auto,auto"
+          ColumnDefinitions="*">
+
+        <Picker Title="Select car brand"
+                x:Name="CarBrandPicker"
+                ItemsSource="{Binding CarBrands}"
+                SelectedItem="{Binding SelectedBrand}"
+                ItemDisplayBinding="{Binding Name}"
+                Grid.Column="0"
+                Grid.Row="0">
+
+            <Picker.Behaviors>
+                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                Command="{Binding UpdateMemberListCommand}"/>
+            </Picker.Behaviors>
+        </Picker>
+
+        <CollectionView x:Name="SaleAdvertisementsView"
+                        ItemsSource="{Binding SaleAdvertisements}"
+                        Grid.Column="0"
+                        Grid.Row="1">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="entities:SaleAdvertisement">
+                    <Border Margin="5"
+                            StrokeShape="RoundRectangle 40, 40, 40, 40">
+                        <Grid RowDefinitions="*, *, *"
+                              ColumnDefinitions="*, *, *">
+                            <Label Text="{Binding Name}"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"/>
+                            
+                            <Label Text="{Binding CarInfo.Model}"
+                                   Grid.Row="1"
+                                   Grid.Column="0"/>
+
+                            <Label Text="{Binding CarInfo.ProductionYear}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+
+                            <Label Text="{Binding SalesmanInfo.Name}"
+                                   Grid.Row="2"
+                                   Grid.Column="0"/>
+
+                            <Label Text="{Binding SalesmanInfo.PhoneNumber}"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+
+                            <Label Text="{Binding Price}"
+                                   Grid.Row="2"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+</ContentPage>

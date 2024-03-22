@@ -23,6 +23,8 @@ internal class FakeSaleAdvertisementRepository : IRepository<SaleAdvertisement>
                     new Car($"{i}", DateTime.Now.AddYears(-Random.Shared.Next(40)).Year),
                     new Salesman($"j", $"+{Random.Shared.Next((int)1e8, (int)1e9)}"),
                     Random.Shared.Next(20000, 200000));
+                advert.AddToBrandAdvertisements(i + 1);
+                _advertisements.Add(advert);
             }
         }
     }

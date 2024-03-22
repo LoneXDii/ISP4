@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using _253505_Pavlovich.Application;
+using _253505_Pavlovich.Persistence;
+using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace _253505_Pavlovich.UI
 {
@@ -7,6 +10,11 @@ namespace _253505_Pavlovich.UI
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            builder
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -14,6 +22,10 @@ namespace _253505_Pavlovich.UI
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services
+                .AddApplication()
+                .AddPersistence();
 
 #if DEBUG
     		builder.Logging.AddDebug();

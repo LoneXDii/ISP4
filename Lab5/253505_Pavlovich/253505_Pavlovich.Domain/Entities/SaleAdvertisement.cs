@@ -8,7 +8,7 @@ namespace _253505_Pavlovich.Domain.Entities;
 
 public class SaleAdvertisement : Entity
 {
-    public SaleAdvertisement(string name, Car carInfo, Salesman salesmanInfo, double cost)
+    public SaleAdvertisement(string name, Car carInfo, Salesman salesmanInfo, double price)
     {
         if (carInfo.ProductionYear < 1980
             || carInfo.ProductionYear > DateTime.Now.Year)
@@ -18,13 +18,13 @@ public class SaleAdvertisement : Entity
         Name = name;
         CarInfo = carInfo;
         SalesmanInfo = salesmanInfo;
-        Cost = cost;
+        Price = price;
     }
 
     public string Name { get; set; }
     public Car CarInfo { get; private set; }
     public Salesman SalesmanInfo { get; private set; }
-    public double Cost { get; private set; }
+    public double Price { get; private set; }
     public int? CarBrandId { get; private set; }
 
     public void AddToBrandAdvertisements(int carBrandId)
@@ -38,8 +38,8 @@ public class SaleAdvertisement : Entity
         CarBrandId = 0;
     }
 
-    public void ChangeCost(double cost)
+    public void ChangePrice(double price)
     {
-        Cost = cost;
+        Price = price;
     }
 }

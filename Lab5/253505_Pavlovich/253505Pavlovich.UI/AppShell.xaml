@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="_253505Pavlovich.UI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:_253505Pavlovich.UI.Pages"
+    Title="_253505Pavlovich.UI">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate pages:CarBrandsPage}"
+        Route="MainPage" />
+
+</Shell>
