@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:SaleAdvertisementDetailsPageViewModel"
+             x:Class="_253505Pavlovich.UI.Pages.SaleAdvertisementDetailsPage"
+             Title="SaleAdvertisementDetails">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding SaleAdvertisement.Name}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding SaleAdvertisement.CarInfo.Model}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding SaleAdvertisement.CarInfo.ProductionYear}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding SaleAdvertisement.SalesmanInfo.Name}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding SaleAdvertisement.Price}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

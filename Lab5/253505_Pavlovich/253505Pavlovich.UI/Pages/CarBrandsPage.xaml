@@ -51,43 +51,33 @@
                     </Border>
                 </VerticalStackLayout>
             </CollectionView.Header>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="entities:SaleAdvertisement">
                     <Border Margin="5"
                             StrokeShape="RoundRectangle 40, 40, 40, 40"
-                            Stroke="{Binding Price, Converter={StaticResource PriceToColor}}">
-                        <Grid RowDefinitions="*, *, *"
-                              ColumnDefinitions="*, *, *">
+                            Stroke="{Binding Price, Converter={StaticResource PriceToColor}}"
+                            StrokeThickness="3">
+                        <Grid RowDefinitions="*"
+                              ColumnDefinitions="*">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding 
+                                                          Source={RelativeSource AncestorType={x:Type models:CarBrandsPageViewModel} },
+                                                          Path=ShowDetailsCommand}"
+                                                      CommandParameter="{Binding}"/>
+                            </Grid.GestureRecognizers>
+
                             <Label Text="{Binding Name}"
                                    Grid.Row="0"
                                    Grid.Column="0"
-                                   Grid.ColumnSpan="3"
-                                   HorizontalOptions="Center"/>
-                            
-                            <Label Text="{Binding CarInfo.Model}"
-                                   Grid.Row="1"
-                                   Grid.Column="0"
-                                   Margin="2"/>
-
-                            <Label Text="{Binding CarInfo.ProductionYear}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"/>
-
-                            <Label Text="{Binding SalesmanInfo.Name}"
-                                   Grid.Row="2"
-                                   Grid.Column="0"/>
-
-                            <Label Text="{Binding SalesmanInfo.PhoneNumber}"
-                                   Grid.Row="2"
-                                   Grid.Column="1"/>
-
-                            <Label Text="{Binding Price}"
-                                   Grid.Row="1"
-                                   Grid.Column="2"
-                                   Grid.RowSpan="2"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
+                                   HorizontalOptions="Center"
+                                   Margin="10"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

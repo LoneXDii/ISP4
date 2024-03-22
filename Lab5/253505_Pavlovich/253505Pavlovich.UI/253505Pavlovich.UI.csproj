@@ -81,7 +81,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\SaleAdvertisementDetailsPage.xaml.cs">
+	    <DependentUpon>SaleAdvertisementDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\CarBrandsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SaleAdvertisementDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
