@@ -90,6 +90,9 @@
 	  <MauiXaml Update="Pages\AddCarBrandPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddSaleAdvertisementPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\CarBrandsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

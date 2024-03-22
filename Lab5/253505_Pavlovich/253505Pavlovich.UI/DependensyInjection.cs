@@ -14,7 +14,8 @@ public static class DependensyInjection
     {
         services.AddSingleton<CarBrandsPage>()
                 .AddTransient<SaleAdvertisementDetailsPage>()
-                .AddTransient<AddCarBrandPage>();
+                .AddTransient<AddCarBrandPage>()
+                .AddTransient<AddSaleAdvertisementPage>();
         return services;
     }
 
@@ -22,7 +23,8 @@ public static class DependensyInjection
     {
         services.AddSingleton<CarBrandsPageViewModel>()
                 .AddTransient<SaleAdvertisementDetailsPageViewModel>()
-                .AddTransient<AddCarBrandPageViewModel>();
+                .AddTransient<AddCarBrandPageViewModel>()
+                .AddTransient<AddSaleAdvertisementPageViewModel>();
         return services;
     }
 }

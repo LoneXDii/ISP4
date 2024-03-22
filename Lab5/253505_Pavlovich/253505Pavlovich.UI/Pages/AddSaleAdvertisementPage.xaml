@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_253505Pavlovich.UI.Pages.AddSaleAdvertisementPage"
+             xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:AddSaleAdvertisementPageViewModel"
+             Title="AddSaleAdvertisementPage">
+    
+    <VerticalStackLayout Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="Enter advertisement description"/>
+            <Entry Text="{Binding Name}"
+                   Placeholder="Enter description"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter information about your car"/>
+            <Entry Text="{Binding CarModel}"
+                   Placeholder="Enter car model"
+                   MinimumWidthRequest="150"/>
+            <Entry Text="{Binding CarProductionYear}"
+                   Placeholder="Enter car production year"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter information about yourselfr"/>
+            <Entry Text="{Binding SalesmanName}"
+                   Placeholder="Enter your name"
+                   MinimumWidthRequest="150"/>
+            <Entry Text="{Binding SalesmanPhoneNumber}"
+                   Placeholder="Enter your phone number"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter price"/>
+            <Entry Text="{Binding Price}"
+                   Placeholder="Enter price"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Button Text="Add"
+                Command="{Binding AddCommand}"
+                MinimumWidthRequest="200"
+                BackgroundColor="Green"/>
+            <Button Text="Cancel"
+                Command="{Binding CancelCommand}"
+                MinimumWidthRequest="200"
+                BackgroundColor="Red"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

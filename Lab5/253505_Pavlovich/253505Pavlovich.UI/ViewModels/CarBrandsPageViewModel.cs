@@ -1,5 +1,6 @@
 ﻿using _253505_Pavlovich.Application.CarBrandUseCases.Queries;
 using _253505_Pavlovich.Application.SaleAdvertisementUseCases.Queries;
+using _253505_Pavlovich.Domain.Entities;
 using _253505Pavlovich.UI.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -39,6 +40,9 @@ public partial class CarBrandsPageViewModel : ObservableObject
     [RelayCommand]
     async Task AddBrand() => await GotoAddBrandPage();
 
+    [RelayCommand]
+    async Task AddAdvertisement() => await GotoAddAdvertisementPage();
+
     public async Task GetCarBrands()
     {
         var brands = await _mediator.Send(new GetCarBrandsRequest());
@@ -77,5 +81,17 @@ public partial class CarBrandsPageViewModel : ObservableObject
     private async Task GotoAddBrandPage()
     {
         await Shell.Current.GoToAsync(nameof(AddCarBrandPage));
+    }
+
+    private async Task GotoAddAdvertisementPage()
+    {
+        if (SelectedBrand is null) return;
+
+        IDictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+            { "SelectedBrand", SelectedBrand }
+        };
+
+        await Shell.Current.GoToAsync(nameof(AddSaleAdvertisementPage), parameters);
     }
 }

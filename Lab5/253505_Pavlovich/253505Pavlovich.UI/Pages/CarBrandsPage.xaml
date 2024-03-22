@@ -30,6 +30,7 @@
         <ToolbarItem Text="Add advertisement"
                      IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
                      Order="Secondary"
+                     Command="{Binding AddAdvertisementCommand}"
                      IsEnabled="{Binding SelectedBrand, Converter={StaticResource IsExist}}"/>
     </ContentPage.ToolbarItems>
 
