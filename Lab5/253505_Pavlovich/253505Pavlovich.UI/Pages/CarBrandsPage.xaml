@@ -4,6 +4,7 @@
              xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:entities="clr-namespace:_253505_Pavlovich.Domain.Entities;assembly=253505Pavlovich.Domain"
+             xmlns:converter ="clr-namespace:_253505Pavlovich.UI.ValueConverters"
              x:DataType="models:CarBrandsPageViewModel"
              x:Class="_253505Pavlovich.UI.Pages.CarBrandsPage"
              Title="CarBrandsPage">
@@ -12,6 +13,12 @@
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}"/>
     </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:PriceToColorValueConverter x:Key="PriceToColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="auto,auto"
           ColumnDefinitions="*">
@@ -34,21 +41,34 @@
                         ItemsSource="{Binding SaleAdvertisements}"
                         Grid.Column="0"
                         Grid.Row="1">
-
+            
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <Border>
+                        <Grid>
+                            <Label Text="{Binding SelectedBrand.Description}"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </CollectionView.Header>
+            
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="entities:SaleAdvertisement">
                     <Border Margin="5"
-                            StrokeShape="RoundRectangle 40, 40, 40, 40">
+                            StrokeShape="RoundRectangle 40, 40, 40, 40"
+                            Stroke="{Binding Price, Converter={StaticResource PriceToColor}}">
                         <Grid RowDefinitions="*, *, *"
                               ColumnDefinitions="*, *, *">
                             <Label Text="{Binding Name}"
                                    Grid.Row="0"
                                    Grid.Column="0"
-                                   Grid.ColumnSpan="3"/>
+                                   Grid.ColumnSpan="3"
+                                   HorizontalOptions="Center"/>
                             
                             <Label Text="{Binding CarInfo.Model}"
                                    Grid.Row="1"
-                                   Grid.Column="0"/>
+                                   Grid.Column="0"
+                                   Margin="2"/>
 
                             <Label Text="{Binding CarInfo.ProductionYear}"
                                    Grid.Row="1"
@@ -63,10 +83,11 @@
                                    Grid.Column="1"/>
 
                             <Label Text="{Binding Price}"
-                                   Grid.Row="2"
+                                   Grid.Row="1"
                                    Grid.Column="2"
-                                   Grid.ColumnSpan="2"
-                                   VerticalOptions="Center"/>
+                                   Grid.RowSpan="2"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
