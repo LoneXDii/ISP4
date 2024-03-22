@@ -8,6 +8,7 @@ namespace _253505_Pavlovich.Domain.Entities;
 
 public class SaleAdvertisement : Entity
 {
+    private SaleAdvertisement() { }
     public SaleAdvertisement(string name, Car carInfo, Salesman salesmanInfo, double price)
     {
         if (carInfo.ProductionYear < 1980
