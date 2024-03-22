@@ -9,11 +9,11 @@ namespace _253505_Pavlovich.Application.SaleAdvertisementUseCases.Commands;
 public sealed record AddSaleAdvertisementRequest(string name
                                                 , string carModel, int carProductionYear
                                                 , string salesmanName, string salesmanPhoneNumber
-                                                , double cost, int? carBrandId) : IRequest { }
+                                                , double cost, int? carBrandId) : IRequest<SaleAdvertisement> { }
 
-internal class AddSaleAdvertisementRequestHandler(IUnitOfWork unitOfWork) : IRequestHandler<AddSaleAdvertisementRequest>
+internal class AddSaleAdvertisementRequestHandler(IUnitOfWork unitOfWork) : IRequestHandler<AddSaleAdvertisementRequest, SaleAdvertisement>
 {
-    public async Task Handle(AddSaleAdvertisementRequest request, CancellationToken cancellationToken)
+    public async Task<SaleAdvertisement> Handle(AddSaleAdvertisementRequest request, CancellationToken cancellationToken)
     {
         var newAdvertisement = new SaleAdvertisement(request.name
                                     , new Car(request.carModel, request.carProductionYear)
@@ -25,5 +25,6 @@ internal class AddSaleAdvertisementRequestHandler(IUnitOfWork unitOfWork) : IReq
 
         await unitOfWork.SaleAdvertisementRepository.AddAsync(newAdvertisement);
         await unitOfWork.SaveAllAsync();
+        return newAdvertisement;
     }
 }

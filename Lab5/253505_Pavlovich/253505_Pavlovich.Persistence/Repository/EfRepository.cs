@@ -65,7 +65,6 @@ internal class EfRepository<T> : IRepository<T> where T : Entity
     public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         await _context.Set<T>().AddAsync(entity);
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
@@ -74,10 +73,10 @@ internal class EfRepository<T> : IRepository<T> where T : Entity
         return Task.CompletedTask;
     }
 
-    public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+    public Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
     {
         _entities.Remove(entity);
-        await _context.SaveChangesAsync(cancellationToken);
+        return Task.CompletedTask;
     }
 
     public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter,

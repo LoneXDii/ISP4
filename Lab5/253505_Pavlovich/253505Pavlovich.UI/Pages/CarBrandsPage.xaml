@@ -5,20 +5,33 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:entities="clr-namespace:_253505_Pavlovich.Domain.Entities;assembly=253505Pavlovich.Domain"
              xmlns:converter ="clr-namespace:_253505Pavlovich.UI.ValueConverters"
+             xmlns:icons ="clr-namespace:_253505Pavlovich.UI.Models"
              x:DataType="models:CarBrandsPageViewModel"
              x:Class="_253505Pavlovich.UI.Pages.CarBrandsPage"
              Title="CarBrandsPage">
 
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded"
+        <toolkit:EventToCommandBehavior EventName="Appearing"
                                         Command="{Binding UpdateGroupListCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:PriceToColorValueConverter x:Key="PriceToColor"/>
+            <converter:ObjectToBoolValueConverter x:Key="IsExist"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add brand"
+                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
+                     Order="Secondary"
+                     Command="{Binding AddBrandCommand}"/>
+        <ToolbarItem Text="Add advertisement"
+                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
+                     Order="Secondary"
+                     IsEnabled="{Binding SelectedBrand, Converter={StaticResource IsExist}}"/>
+    </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="auto,auto"
           ColumnDefinitions="*">
@@ -43,7 +56,7 @@
                         Grid.Row="1">
             
             <CollectionView.Header>
-                <VerticalStackLayout>
+                <VerticalStackLayout IsVisible ="{Binding SelectedBrand, Converter={StaticResource IsExist}}">
                     <Border>
                         <Grid>
                             <Label Text="{Binding SelectedBrand.Description}"/>

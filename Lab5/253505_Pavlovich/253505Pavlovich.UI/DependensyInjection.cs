@@ -13,14 +13,16 @@ public static class DependensyInjection
     public static IServiceCollection RegisterPages(this IServiceCollection services)
     {
         services.AddSingleton<CarBrandsPage>()
-                .AddTransient<SaleAdvertisementDetailsPage>();
+                .AddTransient<SaleAdvertisementDetailsPage>()
+                .AddTransient<AddCarBrandPage>();
         return services;
     }
 
     public static IServiceCollection RegisterViewModels(this IServiceCollection services)
     {
         services.AddSingleton<CarBrandsPageViewModel>()
-                .AddTransient<SaleAdvertisementDetailsPageViewModel>();
+                .AddTransient<SaleAdvertisementDetailsPageViewModel>()
+                .AddTransient<AddCarBrandPageViewModel>();
         return services;
     }
 }

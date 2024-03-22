@@ -36,6 +36,9 @@ public partial class CarBrandsPageViewModel : ObservableObject
     [RelayCommand]
     async Task ShowDetails(SaleAdvertisement saleAdvertisement) => await GotoDetailsPage(saleAdvertisement);
 
+    [RelayCommand]
+    async Task AddBrand() => await GotoAddBrandPage();
+
     public async Task GetCarBrands()
     {
         var brands = await _mediator.Send(new GetCarBrandsRequest());
@@ -69,5 +72,10 @@ public partial class CarBrandsPageViewModel : ObservableObject
             { "SaleAdvertisement", saleAdvertisement }
         };
         await Shell.Current.GoToAsync(nameof(SaleAdvertisementDetailsPage), parameters);
+    }
+
+    private async Task GotoAddBrandPage()
+    {
+        await Shell.Current.GoToAsync(nameof(AddCarBrandPage));
     }
 }

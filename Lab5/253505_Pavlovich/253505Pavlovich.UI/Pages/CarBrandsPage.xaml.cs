@@ -9,4 +9,14 @@ public partial class CarBrandsPage : ContentPage
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        foreach (var item in ToolbarItems)
+        {
+            item.BindingContext = BindingContext;
+        }
+    }
 }
