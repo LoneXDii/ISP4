@@ -30,7 +30,7 @@ public class SaleAdvertisement : Entity
 
     public void AddToBrandAdvertisements(int carBrandId)
     {
-        if (CarBrandId <= 0) return;
+        if (carBrandId <= 0) return;
         CarBrandId = carBrandId;
     }
 

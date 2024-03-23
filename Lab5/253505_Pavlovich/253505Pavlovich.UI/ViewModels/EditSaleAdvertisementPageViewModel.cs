@@ -34,6 +34,9 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
     async Task SetPicker() => await UpdateBrandsList();
 
     [RelayCommand]
+    async Task ChangeBrand(int id) => await UpdateCarBrand(id);
+
+    [RelayCommand]
     async Task Edit() => await EditSaleAdvertisementAsync();
 
     [RelayCommand]
@@ -50,6 +53,14 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
 
         if (SaleAdvertisement is null) return;
         SelectedBrand = Brands.FirstOrDefault(b => b.Id == SaleAdvertisement.CarBrandId);
+    }
+
+    private async Task UpdateCarBrand(int id)
+    {
+        if(SelectedBrand is null || SaleAdvertisement is null) return;
+        SelectedBrand = Brands.FirstOrDefault(b => b.Id == id);
+        SaleAdvertisement.DeleteFromBrandAdvertisements();
+        SaleAdvertisement.AddToBrandAdvertisements(id);
     }
 
     public async Task EditSaleAdvertisementAsync()
