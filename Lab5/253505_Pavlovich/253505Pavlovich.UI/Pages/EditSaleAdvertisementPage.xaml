@@ -7,6 +7,11 @@
              x:DataType="models:EditSaleAdvertisementPageViewModel"
              Title="EditSaleAdvertisementPage">
 
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding SetPickerCommand}"/>
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout Spacing="15">
         <VerticalStackLayout>
             <Label Text="Enter advertisement description"/>
@@ -31,6 +36,18 @@
             <Label Text="Enter price"/>
             <Entry Text="{Binding SaleAdvertisement.Price}"
                    MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Select car brand"/>
+            <Picker ItemsSource="{Binding Brands}"
+                    SelectedItem="{Binding SelectedBrand}"
+                    ItemDisplayBinding="{Binding Name}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                    Command="{Binding ChangeBrandCommand}"
+                                                    CommandParameter="{Binding SelectedBrand.Id}"/>
+                </Picker.Behaviors>
+            </Picker>
         </VerticalStackLayout>
         <HorizontalStackLayout>
             <Button Text="Edit"
