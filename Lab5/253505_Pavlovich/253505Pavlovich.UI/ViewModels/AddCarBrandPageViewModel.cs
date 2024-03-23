@@ -32,8 +32,8 @@ public partial class AddCarBrandPageViewModel : ObservableObject
 
     public async Task AddCarModel()
     {
-        if (name is null || description is null) return;
-        var brand = await _mediator.Send(new AddCarBrandRequest(name, description));
+        if (Name is null || Description is null) return;
+        var brand = await _mediator.Send(new AddCarBrandRequest(Name, Description));
         await Shell.Current.GoToAsync("..");
     }
 

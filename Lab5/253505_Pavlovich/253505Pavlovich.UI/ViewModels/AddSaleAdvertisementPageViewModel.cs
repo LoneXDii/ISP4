@@ -49,10 +49,12 @@ public partial class AddSaleAdvertisementPageViewModel : ObservableObject
 
     public async Task AddSaleAdvertisement()
     {
-        if (name is null || carModel is null || salesmanName is null || salesmanPhoneNumber is null) return;
-        var brand = await _mediator.Send(new AddSaleAdvertisementRequest(name, carModel, carProductionYear
-                                                                         , salesmanName, salesmanPhoneNumber, price
-                                                                         , selectedBrand.Id));
+        if (Name is null || CarModel is null || SalesmanName is null 
+            || SalesmanPhoneNumber is null || SelectedBrand is null) return;
+        
+        var brand = await _mediator.Send(new AddSaleAdvertisementRequest(Name, CarModel, CarProductionYear
+                                                                         , SalesmanName, SalesmanPhoneNumber, Price
+                                                                         , SelectedBrand.Id));
         await Shell.Current.GoToAsync("..");
     }
 

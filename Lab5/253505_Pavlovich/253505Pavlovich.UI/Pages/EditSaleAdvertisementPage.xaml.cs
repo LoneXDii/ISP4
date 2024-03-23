@@ -2,9 +2,9 @@ using _253505Pavlovich.UI.ViewModels;
 
 namespace _253505Pavlovich.UI.Pages;
 
-public partial class CarBrandsPage : ContentPage
+public partial class EditSaleAdvertisementPage : ContentPage
 {
-	public CarBrandsPage(CarBrandsPageViewModel viewModel)
+	public EditSaleAdvertisementPage(EditSaleAdvertisementPageViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;

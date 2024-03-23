@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_253505Pavlovich.UI.Pages.EditSaleAdvertisementPage"
+             xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:EditSaleAdvertisementPageViewModel"
+             Title="EditSaleAdvertisementPage">
+
+    <VerticalStackLayout Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="Enter advertisement description"/>
+            <Entry Text="{Binding SaleAdvertisement.Name}"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter information about your car"/>
+            <Entry Text="{Binding SaleAdvertisement.CarInfo.Model}"
+                   MinimumWidthRequest="150"/>
+            <Entry Text="{Binding SaleAdvertisement.CarInfo.ProductionYear}"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter information about yourselfr"/>
+            <Entry Text="{Binding SaleAdvertisement.SalesmanInfo.Name}"
+                   MinimumWidthRequest="150"/>
+            <Entry Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber}"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Enter price"/>
+            <Entry Text="{Binding SaleAdvertisement.Price}"
+                   MinimumWidthRequest="150"/>
+        </VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Button Text="Edit"
+                Command="{Binding EditCommand}"
+                MinimumWidthRequest="200"
+                BackgroundColor="Green"/>
+            <Button Text="Cancel"
+                Command="{Binding CancelCommand}"
+                MinimumWidthRequest="200"
+                BackgroundColor="Red"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

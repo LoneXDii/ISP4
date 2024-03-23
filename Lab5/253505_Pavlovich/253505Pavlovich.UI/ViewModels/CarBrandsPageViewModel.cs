@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,14 +49,22 @@ public partial class CarBrandsPageViewModel : ObservableObject
         var brands = await _mediator.Send(new GetCarBrandsRequest());
         await MainThread.InvokeOnMainThreadAsync(() =>
         {
+            int id = 0;
+            if (SelectedBrand is not null)
+            {
+                id = SelectedBrand.Id;
+            }
+
             CarBrands.Clear();
             foreach (var brand in brands)
             {
                 CarBrands.Add(brand);
             }
+
+            SelectedBrand = CarBrands.FirstOrDefault(b => b.Id == id);
         });
     }
-
+    
     public async Task GetSaleAdvertisements()
     {
         if (SelectedBrand is null) return;

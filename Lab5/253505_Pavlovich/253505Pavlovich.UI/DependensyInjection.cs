@@ -15,7 +15,8 @@ public static class DependensyInjection
         services.AddSingleton<CarBrandsPage>()
                 .AddTransient<SaleAdvertisementDetailsPage>()
                 .AddTransient<AddCarBrandPage>()
-                .AddTransient<AddSaleAdvertisementPage>();
+                .AddTransient<AddSaleAdvertisementPage>()
+                .AddTransient<EditSaleAdvertisementPage>();
         return services;
     }
 
@@ -24,7 +25,8 @@ public static class DependensyInjection
         services.AddSingleton<CarBrandsPageViewModel>()
                 .AddTransient<SaleAdvertisementDetailsPageViewModel>()
                 .AddTransient<AddCarBrandPageViewModel>()
-                .AddTransient<AddSaleAdvertisementPageViewModel>();
+                .AddTransient<AddSaleAdvertisementPageViewModel>()
+                .AddTransient<EditSaleAdvertisementPageViewModel>();
         return services;
     }
 }

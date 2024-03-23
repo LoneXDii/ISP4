@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:icons ="clr-namespace:_253505Pavlovich.UI.Models"             
              x:DataType="models:SaleAdvertisementDetailsPageViewModel"
              x:Class="_253505Pavlovich.UI.Pages.SaleAdvertisementDetailsPage"
              Title="SaleAdvertisementDetails">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Eedit"
+                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.PenToSquare}}"
+                     Order="Secondary"
+                     Command="{Binding EditCommand}"/>
+    </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
         <Label Text="{Binding SaleAdvertisement.Name, StringFormat = 'Description: {0}'}"/>

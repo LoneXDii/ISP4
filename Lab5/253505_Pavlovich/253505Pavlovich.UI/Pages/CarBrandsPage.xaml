@@ -13,6 +13,8 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Appearing"
                                         Command="{Binding UpdateGroupListCommand}"/>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding UpdateMemberListCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
