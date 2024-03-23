@@ -9,26 +9,51 @@
              x:Class="_253505Pavlovich.UI.Pages.SaleAdvertisementDetailsPage"
              Title="SaleAdvertisementDetails">
 
+    
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Eedit"
+        <ToolbarItem Text="Edit information"
                      IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.PenToSquare}}"
-                     Order="Primary"
-                     Command="{Binding EditCommand}"/>
+                     Command="{Binding EditCommand}"
+                     Order="Primary"/>
+        <ToolbarItem Text="Set image"
+                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.Image}}"
+                     Clicked="OnSetImageClicked"
+                     Command="{Binding SetImageCommand}"
+                     Order="Primary"/>
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
-        <Image HorizontalOptions="Center"
+        <Image x:Name="AdvertImage"
+               HorizontalOptions="Center"
                MaximumHeightRequest="200"
                MaximumWidthRequest="200"
                Source="{Binding SaleAdvertisement.Id, Converter={converter:IdToImageValueConverter}}"/>
-        <Label Text="{Binding SaleAdvertisement.Name, StringFormat = 'Description: {0}', Mode=TwoWay }"/>
+        <HorizontalStackLayout>
+            <Label Text="Description:"/>
+            <Label Text="{Binding SaleAdvertisement.Name, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
         <Label Text="Car information:"/>
-        <Label Text="{Binding SaleAdvertisement.CarInfo.Model, StringFormat= 'Car model: {0}', Mode=TwoWay }"/>
-        <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear, StringFormat='Production year: {0}', Mode=TwoWay }"/>
-        <Label Text="{Binding SaleAdvertisement.Price, StringFormat='Price: {0}$', Mode=TwoWay }"/>
+        <HorizontalStackLayout>
+            <Label Text="Car model:"/>
+            <Label Text="{Binding SaleAdvertisement.CarInfo.Model, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Production year:"/>
+            <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Price:"/>
+            <Label Text="{Binding SaleAdvertisement.Price, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
         <Label Text="Salesman information:"/>
-        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name, StringFormat='Name: {0}', Mode=TwoWay }"/>
-        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber, StringFormat='Phone number: {0}', Mode=TwoWay }"/>
+        <HorizontalStackLayout>
+            <Label Text="Name:"/>
+            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Phone number:"/>
+            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber, Mode=TwoWay }"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 
 </ContentPage>

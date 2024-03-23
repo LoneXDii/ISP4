@@ -9,4 +9,19 @@ public partial class SaleAdvertisementDetailsPage : ContentPage
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
+    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        foreach (var item in MenuBarItems)
+        {
+            item.BindingContext = BindingContext;
+        }
+    }
+
+    private void OnSetImageClicked(object sender, EventArgs e)
+    {
+        //AdvertImage.Source = ImageSource.FromFile("no_image.jpg");
+    }
 }

@@ -4,10 +4,13 @@ using _253505_Pavlovich.Application.SaleAdvertisementUseCases.Queries;
 using _253505Pavlovich.UI.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Storage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +32,9 @@ public partial class SaleAdvertisementDetailsPageViewModel : ObservableObject
     [RelayCommand]
     async Task Edit() => await GotoEditPage();
 
+    [RelayCommand]
+    async Task SetImage() => await SelectImageFromDevice();
+
     private async Task GotoEditPage()
     {
         if (SaleAdvertisement is null) return;
@@ -37,5 +43,32 @@ public partial class SaleAdvertisementDetailsPageViewModel : ObservableObject
             { "SaleAdvertisement", SaleAdvertisement }
         };
         await Shell.Current.GoToAsync(nameof(EditSaleAdvertisementPage), parameters);
+    }
+
+    private async Task SelectImageFromDevice()
+    {
+        var pickedImg = await FilePicker.Default.PickAsync(PickOptions.Images);
+        if (pickedImg is null) return;
+
+        var fileType = pickedImg.ContentType.Split('/')[1];
+
+        if (fileType is null || SaleAdvertisement is null) return;
+
+        var pathToImage = Path.Combine($"{(int)SaleAdvertisement.Id}.{fileType}");
+        var image = pathToImage;
+        pathToImage = Path.Combine(FileSystem.Current.AppDataDirectory, pathToImage);
+
+        using Stream inputStream = await pickedImg.OpenReadAsync();
+
+        if (File.Exists(pathToImage))
+        {
+            File.Delete(pathToImage);
+        }
+
+        using Stream outputStream = File.Create(pathToImage);
+
+        await inputStream.CopyToAsync(outputStream);
+
+        this.OnPropertyChanged("SaleAdvertisement");
     }
 }

@@ -80,7 +80,7 @@
                             Stroke="{Binding Price, Converter={StaticResource PriceToColor}}"
                             StrokeThickness="3">
                         <Grid RowDefinitions="*"
-                              ColumnDefinitions="*">
+                              ColumnDefinitions="auto, *">
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding 
@@ -89,9 +89,14 @@
                                                       CommandParameter="{Binding}"/>
                             </Grid.GestureRecognizers>
 
+                            <Image MaximumHeightRequest="40"
+                                   MaximumWidthRequest="40"
+                                   Source="{Binding Id, Converter={converter:IdToImageValueConverter}}
+                             "/>
+
                             <Label Text="{Binding Name}"
                                    Grid.Row="0"
-                                   Grid.Column="0"
+                                   Grid.Column="1"
                                    HorizontalOptions="Center"
                                    Margin="10"/>
                         </Grid>
