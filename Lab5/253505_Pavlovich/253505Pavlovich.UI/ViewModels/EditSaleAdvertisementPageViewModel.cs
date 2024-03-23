@@ -61,6 +61,7 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
         SelectedBrand = Brands.FirstOrDefault(b => b.Id == id);
         SaleAdvertisement.DeleteFromBrandAdvertisements();
         SaleAdvertisement.AddToBrandAdvertisements(id);
+        await _mediator.Send(new UpdateSaleAdvertisementRequest(SaleAdvertisement));
     }
 
     public async Task EditSaleAdvertisementAsync()

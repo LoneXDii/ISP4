@@ -11,11 +11,6 @@ public class SaleAdvertisement : Entity
     private SaleAdvertisement() { }
     public SaleAdvertisement(string name, Car carInfo, Salesman salesmanInfo, double price)
     {
-        if (carInfo.ProductionYear < 1980
-            || carInfo.ProductionYear > DateTime.Now.Year)
-        {
-            throw new ArgumentException("Incorrect production date");
-        }
         Name = name;
         CarInfo = carInfo;
         SalesmanInfo = salesmanInfo;

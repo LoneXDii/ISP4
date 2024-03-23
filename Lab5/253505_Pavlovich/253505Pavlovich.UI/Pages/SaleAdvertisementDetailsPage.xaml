@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models ="clr-namespace:_253505Pavlovich.UI.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:icons ="clr-namespace:_253505Pavlovich.UI.Models"             
+             xmlns:icons ="clr-namespace:_253505Pavlovich.UI.Models"  
+             xmlns:converter="clr-namespace:_253505Pavlovich.UI.ValueConverters"
              x:DataType="models:SaleAdvertisementDetailsPageViewModel"
              x:Class="_253505Pavlovich.UI.Pages.SaleAdvertisementDetailsPage"
              Title="SaleAdvertisementDetails">
@@ -16,14 +17,18 @@
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
-        <Label Text="{Binding SaleAdvertisement.Name, StringFormat = 'Description: {0}'}"/>
+        <Image HorizontalOptions="Center"
+               MaximumHeightRequest="200"
+               MaximumWidthRequest="200"
+               Source="{Binding SaleAdvertisement.Id, Converter={converter:IdToImageValueConverter}}"/>
+        <Label Text="{Binding SaleAdvertisement.Name, StringFormat = 'Description: {0}', Mode=TwoWay }"/>
         <Label Text="Car information:"/>
-        <Label Text="{Binding SaleAdvertisement.CarInfo.Model, StringFormat= 'Car model: {0}'}"/>
-        <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear, StringFormat='Production year: {0}'}"/>
-        <Label Text="{Binding SaleAdvertisement.Price, StringFormat='Price: {0}$'}"/>
+        <Label Text="{Binding SaleAdvertisement.CarInfo.Model, StringFormat= 'Car model: {0}', Mode=TwoWay }"/>
+        <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear, StringFormat='Production year: {0}', Mode=TwoWay }"/>
+        <Label Text="{Binding SaleAdvertisement.Price, StringFormat='Price: {0}$', Mode=TwoWay }"/>
         <Label Text="Salesman information:"/>
-        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name, StringFormat='Name: {0}'}"/>
-        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber, StringFormat='Phone number: {0}'}"/>
+        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name, StringFormat='Name: {0}', Mode=TwoWay }"/>
+        <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber, StringFormat='Phone number: {0}', Mode=TwoWay }"/>
     </VerticalStackLayout>
 
 </ContentPage>
