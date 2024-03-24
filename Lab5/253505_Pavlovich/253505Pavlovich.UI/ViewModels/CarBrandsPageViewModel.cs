@@ -29,8 +29,8 @@ public partial class CarBrandsPageViewModel : ObservableObject
     [ObservableProperty]
     CarBrand? selectedBrand;
 
-    //[RelayCommand]
-    //async Task UpdatePage() => await UpdateAll();
+    [RelayCommand]
+    void Refresh() => RefreshPage();
 
     [RelayCommand]
     async Task UpdateGroupList() => await GetCarBrands();
@@ -107,9 +107,10 @@ public partial class CarBrandsPageViewModel : ObservableObject
         await Shell.Current.GoToAsync(nameof(AddSaleAdvertisementPage), parameters);
     }
 
-    //private async Task UpdateAll()
-    //{
-    //    await Task.Delay(0);
-    //    this.OnPropertyChanged();
-    //}
+    private void RefreshPage()
+    {
+        this.OnPropertyChanged(nameof(CarBrands));
+        this.OnPropertyChanged(nameof(SaleAdvertisements));
+        this.OnPropertyChanged(nameof(SelectedBrand));
+    }
 }

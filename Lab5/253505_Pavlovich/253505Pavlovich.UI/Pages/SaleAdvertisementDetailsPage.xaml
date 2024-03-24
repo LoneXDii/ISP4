@@ -9,6 +9,10 @@
              x:Class="_253505Pavlovich.UI.Pages.SaleAdvertisementDetailsPage"
              Title="SaleAdvertisementDetails">
 
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding RefreshCommand}"/>
+    </ContentPage.Behaviors>
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit information"

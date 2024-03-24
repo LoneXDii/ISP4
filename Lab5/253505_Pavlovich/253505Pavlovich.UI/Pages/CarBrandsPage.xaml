@@ -9,12 +9,12 @@
              x:DataType="models:CarBrandsPageViewModel"
              x:Class="_253505Pavlovich.UI.Pages.CarBrandsPage"
              Title="CarBrandsPage">
-
+    
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Appearing"
+        <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}"/>
         <toolkit:EventToCommandBehavior EventName="Appearing"
-                                        Command="{Binding UpdateMemberListCommand}"/>
+                                        Command="{Binding RefreshCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
@@ -56,7 +56,8 @@
         <CollectionView x:Name="SaleAdvertisementsView"
                         ItemsSource="{Binding SaleAdvertisements}"
                         Grid.Column="0"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        HeightRequest="400">
             
             <CollectionView.Header>
                 <VerticalStackLayout IsVisible ="{Binding SelectedBrand, Converter={StaticResource IsExist}}">
@@ -89,10 +90,9 @@
                                                       CommandParameter="{Binding}"/>
                             </Grid.GestureRecognizers>
 
-                            <Image MaximumHeightRequest="40"
-                                   MaximumWidthRequest="40"
-                                   Source="{Binding Id, Converter={converter:IdToImageValueConverter}}
-                             "/>
+                            <Image MaximumHeightRequest="80"
+                                   MaximumWidthRequest="80"
+                                   Source="{Binding Id, Converter={converter:IdToImageValueConverter}}"/>
 
                             <Label Text="{Binding Name}"
                                    Grid.Row="0"

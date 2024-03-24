@@ -13,13 +13,8 @@ internal class IdToImageValueConverter : IValueConverter
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is null) return ImageSource.FromFile("no_image.jpg");
-        var dirPath = FileSystem.Current.AppDataDirectory;
+        var dirPath = "D:\\labs\\Sem 4\\ISP\\Lab5\\253505_Pavlovich\\253505Pavlovich.UI\\Images\\";
         var pathToImage = Path.Combine(dirPath, $"{(int)value}.png");
-
-
-
-        var dir = Directory.GetFiles(dirPath);
-
 
         if (!File.Exists(pathToImage))
         {

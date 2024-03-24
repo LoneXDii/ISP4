@@ -35,6 +35,9 @@ public partial class SaleAdvertisementDetailsPageViewModel : ObservableObject
     [RelayCommand]
     async Task SetImage() => await SelectImageFromDevice();
 
+    [RelayCommand]
+    void Refresh() => RefreshPage();
+
     private async Task GotoEditPage()
     {
         if (SaleAdvertisement is null) return;
@@ -54,8 +57,9 @@ public partial class SaleAdvertisementDetailsPageViewModel : ObservableObject
 
         if (fileType is null || SaleAdvertisement is null) return;
 
-        var pathToImage = Path.Combine($"{(int)SaleAdvertisement.Id}.{fileType}");
-        var image = pathToImage;
+
+        var dirPath = "D:\\labs\\Sem 4\\ISP\\Lab5\\253505_Pavlovich\\253505Pavlovich.UI\\Images\\";
+        var pathToImage = Path.Combine(dirPath, $"{(int)SaleAdvertisement.Id}.{fileType}");
         pathToImage = Path.Combine(FileSystem.Current.AppDataDirectory, pathToImage);
 
         using Stream inputStream = await pickedImg.OpenReadAsync();
@@ -68,7 +72,11 @@ public partial class SaleAdvertisementDetailsPageViewModel : ObservableObject
         using Stream outputStream = File.Create(pathToImage);
 
         await inputStream.CopyToAsync(outputStream);
+        this.OnPropertyChanged(nameof(SaleAdvertisement));
+    }
 
-        this.OnPropertyChanged("SaleAdvertisement");
+    private void RefreshPage()
+    {
+        this.OnPropertyChanged(nameof(SaleAdvertisement));
     }
 }
