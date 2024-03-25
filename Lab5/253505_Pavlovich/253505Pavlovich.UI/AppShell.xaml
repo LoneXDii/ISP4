@@ -4,11 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:_253505Pavlovich.UI.Pages"
+    xmlns:icons ="clr-namespace:_253505Pavlovich.UI.Models"
     Title="_253505Pavlovich.UI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate pages:CarBrandsPage}"
-        Route="MainPage" />
+    <ShellContent Title="Home"
+                  Icon="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.House}}"
+                  ContentTemplate="{DataTemplate pages:MainPage}"/>
+
+    <ShellContent Title="Sale advertisements"
+                  Icon="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.RectangleList}}"
+                  ContentTemplate="{DataTemplate pages:CarBrandsPage}"/>
 
 </Shell>

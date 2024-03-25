@@ -30,7 +30,7 @@ public partial class AddSaleAdvertisementPageViewModel : ObservableObject
     string? carModel;
 
     [ObservableProperty]
-    int carProductionYear;
+    int? carProductionYear;
 
     [ObservableProperty]
     string? salesmanName;
@@ -39,7 +39,7 @@ public partial class AddSaleAdvertisementPageViewModel : ObservableObject
     string? salesmanPhoneNumber;
 
     [ObservableProperty]
-    double price;
+    double? price;
 
     [RelayCommand]
     public async Task Add() => await AddSaleAdvertisement();
@@ -49,12 +49,23 @@ public partial class AddSaleAdvertisementPageViewModel : ObservableObject
 
     public async Task AddSaleAdvertisement()
     {
-        if (Name is null || CarModel is null || SalesmanName is null 
-            || SalesmanPhoneNumber is null || SelectedBrand is null) return;
-        
-        var brand = await _mediator.Send(new AddSaleAdvertisementRequest(Name, CarModel, CarProductionYear
-                                                                         , SalesmanName, SalesmanPhoneNumber, Price
-                                                                         , SelectedBrand.Id));
+        if (Name is null || CarModel is null || SalesmanName is null
+            || SalesmanPhoneNumber is null || SelectedBrand is null
+            || CarProductionYear is null || Price is null) return;
+
+        try
+        {
+            await _mediator.Send(new AddSaleAdvertisementRequest(Name, CarModel, (int)CarProductionYear
+                                                                             , SalesmanName, SalesmanPhoneNumber, (int)Price
+                                                                             , SelectedBrand.Id));
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Something went wrong"
+                , $"Incrorrect production year (must be from 1970 to {DateTime.Now.Year})"
+                , "Ok");
+            return;
+        }
         await Shell.Current.GoToAsync("..");
     }
 

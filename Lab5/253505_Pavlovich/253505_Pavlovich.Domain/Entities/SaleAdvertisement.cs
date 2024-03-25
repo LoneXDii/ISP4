@@ -18,9 +18,9 @@ public class SaleAdvertisement : Entity
     }
 
     public string Name { get; set; }
-    public Car CarInfo { get; private set; }
-    public Salesman SalesmanInfo { get; private set; }
-    public double Price { get; private set; }
+    public Car CarInfo { get; set; }
+    public Salesman SalesmanInfo { get; set; }
+    public double Price { get; set; }
     public int? CarBrandId { get; private set; }
 
     public void AddToBrandAdvertisements(int carBrandId)

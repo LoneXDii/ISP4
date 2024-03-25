@@ -24,17 +24,17 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add brand"
-                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
-                     Order="Secondary"
-                     Command="{Binding AddBrandCommand}"/>
-        <ToolbarItem Text="Add advertisement"
-                     IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
-                     Order="Secondary"
-                     Command="{Binding AddAdvertisementCommand}"
-                     IsEnabled="{Binding SelectedBrand, Converter={StaticResource IsExist}}"/>
-    </ContentPage.ToolbarItems>
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Menu">
+            <MenuFlyoutItem Text="Add brand"
+                            IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
+                            Command="{Binding AddBrandCommand}"/>
+            <MenuFlyoutItem Text="Add advertisement"
+                            IconImageSource="{FontImage FontFamily=fontawesome, Color=White, Size=30, Glyph={x:Static icons:Icons.SquarePlus}}"
+                            Command="{Binding AddAdvertisementCommand}"
+                            IsEnabled="{Binding SelectedBrand, Converter={StaticResource IsExist}}"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
 
     <Grid RowDefinitions="auto,auto"
           ColumnDefinitions="*">
@@ -63,7 +63,9 @@
                 <VerticalStackLayout IsVisible ="{Binding SelectedBrand, Converter={StaticResource IsExist}}">
                     <Border>
                         <Grid>
-                            <Label Text="{Binding SelectedBrand.Description}"/>
+                            <Label Text="{Binding SelectedBrand.Description}"
+                                   Margin="5"
+                                   HorizontalOptions="Center"/>
                         </Grid>
                     </Border>
                 </VerticalStackLayout>

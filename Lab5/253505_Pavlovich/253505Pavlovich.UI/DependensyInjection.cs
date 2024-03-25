@@ -12,7 +12,8 @@ public static class DependensyInjection
 {
     public static IServiceCollection RegisterPages(this IServiceCollection services)
     {
-        services.AddTransient<CarBrandsPage>()
+        services.AddSingleton<MainPage>()
+                .AddSingleton<CarBrandsPage>()
                 .AddTransient<SaleAdvertisementDetailsPage>()
                 .AddTransient<AddCarBrandPage>()
                 .AddTransient<AddSaleAdvertisementPage>()
@@ -22,7 +23,7 @@ public static class DependensyInjection
 
     public static IServiceCollection RegisterViewModels(this IServiceCollection services)
     {
-        services.AddTransient<CarBrandsPageViewModel>()
+        services.AddSingleton<CarBrandsPageViewModel>()
                 .AddTransient<SaleAdvertisementDetailsPageViewModel>()
                 .AddTransient<AddCarBrandPageViewModel>()
                 .AddTransient<AddSaleAdvertisementPageViewModel>()

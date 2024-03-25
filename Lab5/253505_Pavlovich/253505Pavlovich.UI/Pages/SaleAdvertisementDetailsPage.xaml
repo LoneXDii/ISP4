@@ -34,29 +34,30 @@
                Source="{Binding SaleAdvertisement.Id, Converter={converter:IdToImageValueConverter}}"/>
         <HorizontalStackLayout>
             <Label Text="Description:"/>
-            <Label Text="{Binding SaleAdvertisement.Name, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.Name}"/>
         </HorizontalStackLayout>
         <Label Text="Car information:"/>
         <HorizontalStackLayout>
             <Label Text="Car model:"/>
-            <Label Text="{Binding SaleAdvertisement.CarInfo.Model, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.CarInfo.Model}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label Text="Production year:"/>
-            <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.CarInfo.ProductionYear}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label Text="Price:"/>
-            <Label Text="{Binding SaleAdvertisement.Price, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.Price}"/>
+            <Label Text="$"/>
         </HorizontalStackLayout>
         <Label Text="Salesman information:"/>
         <HorizontalStackLayout>
             <Label Text="Name:"/>
-            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.Name}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label Text="Phone number:"/>
-            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber, Mode=TwoWay }"/>
+            <Label Text="{Binding SaleAdvertisement.SalesmanInfo.PhoneNumber}"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 

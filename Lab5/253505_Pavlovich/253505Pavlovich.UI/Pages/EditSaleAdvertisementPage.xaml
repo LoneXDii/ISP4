@@ -12,7 +12,7 @@
                                         Command="{Binding SetPickerCommand}"/>
     </ContentPage.Behaviors>
 
-    <VerticalStackLayout Spacing="15">
+    <VerticalStackLayout Spacing="10">
         <VerticalStackLayout>
             <Label Text="Enter advertisement description"/>
             <Entry Text="{Binding SaleAdvertisement.Name}"
@@ -22,7 +22,7 @@
             <Label Text="Enter information about your car"/>
             <Entry Text="{Binding SaleAdvertisement.CarInfo.Model}"
                    MinimumWidthRequest="150"/>
-            <Entry Text="{Binding SaleAdvertisement.CarInfo.ProductionYear}"
+            <Entry Text="{Binding ProductionYear}"
                    MinimumWidthRequest="150"/>
         </VerticalStackLayout>
         <VerticalStackLayout>

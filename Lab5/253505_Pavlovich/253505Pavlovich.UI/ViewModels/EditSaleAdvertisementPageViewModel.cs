@@ -30,6 +30,9 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
     [ObservableProperty]
     CarBrand? selectedBrand;
 
+    [ObservableProperty]
+    int productionYear = 0;
+
     [RelayCommand]
     async Task SetPicker() => await UpdateBrandsList();
 
@@ -53,6 +56,10 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
 
         if (SaleAdvertisement is null) return;
         SelectedBrand = Brands.FirstOrDefault(b => b.Id == SaleAdvertisement.CarBrandId);
+        if (ProductionYear == 0)
+        {
+            ProductionYear = SaleAdvertisement.CarInfo.ProductionYear;
+        }
     }
 
     private async Task UpdateCarBrand(int id)
@@ -67,12 +74,26 @@ public partial class EditSaleAdvertisementPageViewModel : ObservableObject
     public async Task EditSaleAdvertisementAsync()
     {
         if (SaleAdvertisement is null) return;
+        try
+        {
+            SaleAdvertisement.CarInfo.ProductionYear = ProductionYear;
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Something went wrong"
+                            , $"Incrorrect production year (must be from 1970 to {DateTime.Now.Year})"
+                            , "Ok");
+            return;
+        }
         await _mediator.Send(new UpdateSaleAdvertisementRequest(SaleAdvertisement));
         await Shell.Current.GoToAsync("..");
     }
 
     public async Task CancelEditingAsync()
     {
+        if (SaleAdvertisement is null || SaleAdvertisement?.CarBrandId is null) return;
+        var adverts = await _mediator.Send(new GetSaleAdvertisementsByBrandRequest((int)SaleAdvertisement.CarBrandId));
+        SaleAdvertisement = adverts.FirstOrDefault(adv => adv.Id == SaleAdvertisement.Id);
         await Shell.Current.GoToAsync("..");
     }
 }

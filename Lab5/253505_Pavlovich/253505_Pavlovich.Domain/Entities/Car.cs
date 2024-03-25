@@ -24,7 +24,7 @@ public sealed record Car
 
         }
 
-        private set
+        set
         {
             if(value < 1970 || value > DateTime.Now.Year)
             {
@@ -34,5 +34,5 @@ public sealed record Car
         }
     }
 
-    public string Model { get; private set; }
+    public string Model { get; set; }
 }

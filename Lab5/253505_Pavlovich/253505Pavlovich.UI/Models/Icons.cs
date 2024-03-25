@@ -66,6 +66,7 @@ public class Icons
     public const string Clock = "\uf017";
     public const string RectangleList = "\uf022";
     public const string Flag = "\uf024";
+    public const string Book = "\u1f56";
     public const string Bookmark = "\uf02e";
     public const string Image = "\uf03e";
     public const string PenToSquare = "\uf044";
@@ -142,6 +143,7 @@ public class Icons
     public const string Clone = "\uf24d";
     public const string HourglassHalf = "\uf252";
     public const string Hourglass = "\u23f3";
+    public const string House = "\u2302";
     public const string HandBackFist = "\uf255";
     public const string Hand = "\u270b";
     public const string HandScissors = "\uf257";
